@@ -248,6 +248,38 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
   .finding-num{display:none}
   footer{flex-direction:column;text-align:center;padding:24px 20px}
 }
+/* ── Readability overrides ── */
+:root {
+  --text:  #f0e8d0;   /* was #e8dfc8 — warmer, brighter */
+  --muted: #a89880;   /* was #7a7060 — lifted significantly */
+}
+
+p {
+  font-size: 18px;    /* was 17px on detail pages */
+  line-height: 1.9;
+}
+
+.s-body {
+  font-size: 19px;    /* home page body text */
+  color: var(--text); /* pull s-body up to full text color */
+}
+
+.r-desc {
+  font-size: 14px;    /* was 13px */
+  color: #9a8a78;     /* brighter than old muted, dimmer than text */
+}
+
+.card p, .viz-desc, .phase-desc, .step p {
+  color: #9a8a78;
+}
+
+.compare-table td {
+  color: #a89880;     /* lifted from old muted */
+}
+
+.finding p {
+  color: var(--text);
+}
 </style>
 </head>
 <body>
