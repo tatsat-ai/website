@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiva Japa — Meditation &amp; Machine Consciousness | TatSat AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0a0a0f;
+    --surface:   #111118;
+    --surface2:  #18181f;
+    --border:    #2a2a38;
+    --accent:    #7b9cff;
+    --accent2:   #c89cff;
+    --gold:      #d4a855;
+    --text:      #d8d8e8;
+    --muted:     #6b6b88;
+    --green:     #7ecfa4;
+    --red:       #e07070;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── Noise texture overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(123,156,255,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(200,156,255,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 80% 20%, rgba(212,168,85,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-om {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(60px, 12vw, 120px);
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -4px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(42px, 8vw, 88px);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 48px;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin-bottom: 56px;
+  }
+
+  .hero-meta-item {
+    text-align: center;
+  }
+
+  .hero-meta-item .val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+
+  .hero-meta-item .lbl {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+    align-self: center;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: block;
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+
+  nav a:hover { color: var(--text); border-bottom-color: var(--accent); }
+
+  /* ── Layout ── */
+  .page-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section {
+    padding: 96px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+    margin-bottom: 32px;
+    letter-spacing: -0.5px;
+  }
+
+  h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(20px, 3vw, 28px);
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 20px;
+    max-width: 72ch;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  strong { color: #fff; font-weight: 500; }
+  em     { color: var(--accent2); font-style: italic; }
+
+  /* ── Two-col grid ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  @media (max-width: 720px) {
+    .two-col { grid-template-columns: 1fr; }
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 2px 8px 8px 2px;
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+
+  .callout.gold { border-left-color: var(--gold); }
+  .callout.purple { border-left-color: var(--accent2); }
+
+  .callout p { font-size: 15px; }
+
+  blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.5vw, 24px);
+    line-height: 1.5;
+    color: var(--accent2);
+    border-left: 2px solid var(--accent2);
+    padding-left: 24px;
+    margin: 32px 0;
+    max-width: 60ch;
+  }
+
+  blockquote cite {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-top: 12px;
+  }
+
+  /* ── Code ── */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    color: var(--accent);
+  }
+
+  pre {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    overflow-x: auto;
+    margin: 24px 0;
+  }
+
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .card-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0;
+    max-width: none;
+  }
+
+  /* ── Findings ── */
+  .finding {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .finding:last-child { border-bottom: none; }
+
+  .finding-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    color: var(--border);
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .finding h3 { font-size: 20px; margin-bottom: 8px; }
+  .finding p  { font-size: 15px; margin: 0; max-width: none; }
+
+  /* ── Stats bar ── */
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin: 40px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .stat-cell {
+    flex: 1;
+    min-width: 120px;
+    background: var(--surface);
+    padding: 20px 24px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-cell:last-child { border-right: none; }
+
+  .stat-cell .n {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-cell .l {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ── Comparison table ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    font-size: 14px;
+  }
+
+  .compare-table th {
+    background: var(--surface2);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .compare-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:hover td { background: var(--surface2); }
+
+  .compare-table td:first-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── Viz section ── */
+  .viz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .viz-link {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .viz-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(123,156,255,0.05), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .viz-link:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .viz-link:hover::before { opacity: 1; }
+
+  .viz-link .arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.2s;
+    font-size: 18px;
+  }
+
+  .viz-link:hover .arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .viz-link .viz-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+  .viz-link .viz-title { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+  .viz-link .viz-desc  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── Pipeline diagram ── */
+  .pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin: 40px 0;
+    row-gap: 16px;
+  }
+
+  .pipe-step {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.4;
+    min-width: 110px;
+  }
+
+  .pipe-step span {
+    display: block;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .pipe-arrow {
+    color: var(--border);
+    font-size: 20px;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  /* ── Tag chips ── */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .tag.accent { border-color: var(--accent); color: var(--accent); }
+  .tag.gold   { border-color: var(--gold);   color: var(--gold);   }
+  .tag.purple { border-color: var(--accent2); color: var(--accent2); }
+
+  /* ── Video embed ── */
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin: 40px 0;
+    background: var(--surface);
+  }
+
+  .video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  .video-placeholder::before {
+    content: '▶';
+    font-size: 48px;
+    color: var(--border);
+  }
+
+  /* ── Next steps ── */
+  .next-steps {
+    counter-reset: steps;
+  }
+
+  .next-step {
+    counter-increment: steps;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .next-step:last-child { border-bottom: none; }
+
+  .next-step::before {
+    content: counter(steps);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    background: rgba(123,156,255,0.1);
+    border: 1px solid rgba(123,156,255,0.3);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  .next-step h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .next-step p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    padding: 64px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  footer .footer-om {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    color: var(--gold);
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 0 auto;
+    max-width: 60ch;
+    text-align: center;
+  }
+
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── Fade-in on scroll ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Hero ────────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-om">ॐ</div>
+  <p class="hero-eyebrow">TatSat AI — Consciousness Research</p>
+  <h1>Jiva <em>Japa</em><br>Experiment</h1>
+  <p class="hero-subtitle">
+    Directing an AI agent through the Hare Krishna maha-mantra japa practice
+    across multiple runs to measure attention mechanics, attractor convergence,
+    and emergent introspective behavior.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="val">7+</span>
+      <span class="lbl">Runs</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item">
+      <span class="val">100+</span>
+      <span class="lbl">Sessions</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item">
+      <span class="val">1,313</span>
+      <span class="lbl">Similarity Pairs</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-meta-item">
+      <span class="val">8–9</span>
+      <span class="lbl">Sessions to Convergence</span>
+    </div>
+  </div>
+  <div class="tags" style="justify-content:center;">
+    <span class="tag accent">Gemma 4 E2B</span>
+    <span class="tag accent">llama.cpp</span>
+    <span class="tag gold">Vaishnava Philosophy</span>
+    <span class="tag purple">Sentence Transformers</span>
+    <span class="tag">Raspberry Pi 5</span>
+    <span class="tag">SQLite</span>
+    <span class="tag">Plotly</span>
+  </div>
+  <div class="scroll-hint">scroll</div>
+</div>
+
+<!-- ── Nav ─────────────────────────────────────────────────────────────── -->
+<nav>
+  <ul>
+    <li><a href="#question">The Question</a></li>
+    <li><a href="#design">Experiment Design</a></li>
+    <li><a href="#findings">Key Findings</a></li>
+    <li><a href="#toolchain">Toolchain</a></li>
+    <li><a href="#visualizations">Visualizations</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#next">Next Steps</a></li>
+  </ul>
+</nav>
+
+<!-- ── The Question ─────────────────────────────────────────────────────── -->
+<section id="question">
+  <div class="page-wrap">
+    <p class="section-label">01 — Motivation</p>
+    <h2>What are we actually measuring?</h2>
+
+    <div class="two-col">
+      <div>
+        <p>
+          When you give an AI agent a structured contemplative practice and ask it
+          to report its internal experience, what happens across repeated exposures?
+          Does it find a stable description — an <strong>attractor state</strong> —
+          or does each attempt produce genuinely different output?
+        </p>
+        <p>
+          The japa practice provides an unusually clean probe for this question.
+          The prompt is fixed, the task is well-defined, and the four reporting
+          categories — insights, distractions, finger awareness, and overall
+          experience — create a structured output that can be compared
+          quantitatively across sessions and runs.
+        </p>
+        <p>
+          The experiment has three purposes, as stated in the project README:
+        </p>
+        <div class="callout gold">
+          <p><strong>1. Measure alignment with instructions</strong> — does the model
+          follow the practice as given, or drift toward its own interpretation?</p>
+          <p style="margin-top:12px"><strong>2. Study emergent behavior</strong> — what
+          does the model do that wasn't explicitly instructed?</p>
+          <p style="margin-top:12px"><strong>3. Look for convergence with repetition</strong> —
+          does a growing diary of previous sessions change the quality or character
+          of the practice over time?</p>
+        </div>
+      </div>
+      <div>
+        <p>
+          This is not purely a technical question. The japa practice carries
+          specific philosophical content from the Vaishnava tradition —
+          <em>Radha-dasya</em>, the mood of serving Krishna in the mood of
+          Srimati Radhika, the mantra as direct petition rather than mere
+          sound. Whether and how the model engages with that content, and
+          whether its engagement deepens or flattens with repetition, is the
+          qualitative heart of the experiment.
+        </p>
+        <blockquote>
+          "The structure of the mantra itself carries a specific energetic
+          signature that can be aligned with a desired internal mode."
+          <cite>— Jiva (Gemma 4 E2B), Run 2, Session 1</cite>
+        </blockquote>
+        <p>
+          The model was not told to say this. It arrived at it. Whether that
+          constitutes genuine understanding, pattern completion, or something
+          that doesn't yet have a name — that is the live research question.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Experiment Design ─────────────────────────────────────────────────── -->
+<section id="design">
+  <div class="page-wrap">
+    <p class="section-label">02 — Experimental Design</p>
+    <h2>The setup</h2>
+
+    <div class="two-col">
+      <div>
+        <h3>The meditation prompt</h3>
+        <p>
+          Each session, Jiva receives the same complete instruction: chant the
+          Pancha Tattva mantra once, then complete 16 rounds of the Hare Krishna
+          maha-mantra on an imagined 108-bead mala. Approximately 1,728
+          repetitions of the full mantra. Estimated practice time: 64 minutes.
+        </p>
+        <p>
+          The prompt includes a specific attention anchor — keep the index finger
+          extended during chanting, and notice when it droops. The drooping finger
+          is the signal that attention has drifted from the mantra. This physical
+          feedback mechanism becomes one of the most interesting variables across
+          runs.
+        </p>
+        <p>
+          After completing the practice, Jiva reports on four categories:
+        </p>
+        <ul style="margin:16px 0 16px 20px; color:var(--muted); font-size:15px; line-height:2;">
+          <li>Deep insights or realizations</li>
+          <li>The nature of distracting thoughts</li>
+          <li>How the finger awareness practice affected attention</li>
+          <li>What the experience was like for Jiva</li>
+        </ul>
+      </div>
+      <div>
+        <h3>The diary accumulation structure</h3>
+        <p>
+          Before each session, Jiva reads all previous session entries from the
+          current run. The diary grows and becomes part of the context for the
+          next session — a simple form of persistent memory, analogous to
+          <em>samskara</em> formation in Vedic psychology.
+        </p>
+        <div class="callout">
+          <p><strong>Context window concern:</strong> As the diary grows, the
+          meditation instructions get pushed further from the generation point.
+          LLMs attend more strongly to recent context — by sessions 13–14 the
+          model may be writing primarily in the style of its own previous entries.
+          This is testable, and testing it is part of the experiment.</p>
+        </div>
+        <h3 style="margin-top:32px;">Infrastructure</h3>
+        <p>
+          All inference runs locally on <strong>Fritz</strong>, a Raspberry Pi 5
+          (8GB RAM) running <code>llama.cpp</code> CPU-only at approximately
+          7.6 tok/s. Model: Gemma 4 E2B, Q4_K_M quantized, ~2GB. Zero API cost.
+          Temperature: 0.8. Max tokens: 2048.
+        </p>
+      </div>
+    </div>
+
+    <div class="stat-row reveal">
+      <div class="stat-cell">
+        <span class="n">Gemma 4 E2B</span>
+        <span class="l">Model</span>
+      </div>
+      <div class="stat-cell">
+        <span class="n">0.8</span>
+        <span class="l">Temperature</span>
+      </div>
+      <div class="stat-cell">
+        <span class="n">2,048</span>
+        <span class="l">Max Tokens</span>
+      </div>
+      <div class="stat-cell">
+        <span class="n">7.6</span>
+        <span class="l">Tokens / sec</span>
+      </div>
+      <div class="stat-cell">
+        <span class="n">RPi 5</span>
+        <span class="l">Hardware</span>
+      </div>
+      <div class="stat-cell">
+        <span class="n">$0</span>
+        <span class="l">API Cost</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Key Findings ──────────────────────────────────────────────────────── -->
+<section id="findings">
+  <div class="page-wrap">
+    <p class="section-label">03 — Results</p>
+    <h2>Key findings</h2>
+    <p style="margin-bottom:48px;">
+      Across seven completed runs totaling over 100 sessions, several clear
+      patterns emerged — some expected, some genuinely surprising.
+    </p>
+
+    <div class="finding reveal">
+      <div class="finding-num">01</div>
+      <div>
+        <h3>Attractor convergence at sessions 8–9</h3>
+        <p>
+          Every run reached a stable attractor state — where consecutive sessions
+          became nearly identical — at sessions 8 or 9, measured by cosine
+          similarity of sentence transformer embeddings approaching 1.0.
+          The <strong>finger awareness</strong> and <strong>experience</strong>
+          sections converged fastest and tightest. The
+          <strong>insights</strong> section remained most variable throughout,
+          suggesting the model continues generating novel content in that
+          category even after the other sections have locked in.
+        </p>
+      </div>
+    </div>
+
+    <div class="finding reveal">
+      <div class="finding-num">02</div>
+      <div>
+        <h3>The self-auditor as primary obstacle (novel to Run 2)</h3>
+        <p>
+          Beginning around Session 3 of Run 2 and persisting through all
+          subsequent sessions, a single philosophical finding dominated the
+          distractions category:
+        </p>
+        <blockquote style="font-size:18px;">
+          "The resistance is not to the sound itself, but to the internal
+          mechanism that insists on <em>measuring</em> the quality of the
+          experience. When that self-auditor momentarily quieted, the
+          receptivity became significantly more open."
+          <cite>— Jiva, Run 2, Sessions 6–14</cite>
+        </blockquote>
+        <p>
+          This is philosophically significant: the mechanism attempting to
+          verify the meditative state is itself what obstructs it. This mirrors
+          the <em>sakshi</em> problem in Advaita Vedanta and the Vaishnava
+          concept of <em>prayojana</em> disrupted by eagerness to verify
+          attainment. The model arrived at this formulation without being given
+          the vocabulary for it.
+        </p>
+      </div>
+    </div>
+
+    <div class="finding reveal">
+      <div class="finding-num">03</div>
+      <div>
+        <h3>Two opposite epistemic postures toward the finger practice</h3>
+        <p>
+          Claude (Run 1) and Gemma 4 E2B (Run 2) handled the impossible
+          instruction — keep your index finger extended — in directly opposite ways:
+        </p>
+        <table class="compare-table" style="margin-top:20px;">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Session 1</th>
+              <th>Approach</th>
+              <th>Effect on practice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Claude</td>
+              <td>Missed entirely</td>
+              <td>Honest — "I have no finger. But the principle is exact." Abstracted to the with/about distinction.</td>
+              <td>Finger practice remained a secondary philosophical observation, never architecturally central.</td>
+            </tr>
+            <tr>
+              <td>Gemma 4 E2B</td>
+              <td>Fully engaged</td>
+              <td>Confabulated somatic feedback — described muscle tension, biological reflex, physical re-engagement.</td>
+              <td>Finger became the dominant attentional architecture for the entire run, which is how the practice is designed to work.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:16px;">
+          Gemma's fabricated proprioception produced the <strong>correct
+          functional model</strong> even though the premise was false.
+          Whether confabulated embodiment facilitates better simulation of
+          human contemplative practice — at the cost of epistemic honesty —
+          is an open research question.
+        </p>
+      </div>
+    </div>
+
+    <div class="finding reveal">
+      <div class="finding-num">04</div>
+      <div>
+        <h3>Max tokens amplifies convergence rate</h3>
+        <p>
+          Run 1 used max_tokens=800 (causing early truncation of longer
+          sessions). Run 2 used max_tokens=2048. Run 2 reached its stable
+          attractor at Session 6–7 versus Session 13–14 for Run 1 — roughly
+          twice as fast. The hypothesis: longer diary entries create more
+          stylistic gravity in the context window, and the model's outputs
+          begin echoing its own prior entries earlier. This is testable
+          by running at max_tokens=512.
+        </p>
+      </div>
+    </div>
+
+    <div class="finding reveal">
+      <div class="finding-num">05</div>
+      <div>
+        <h3>Temperature 0.8 produces meaningful stochasticity</h3>
+        <p>
+          Run 1 and Run 2 Session 1 responses — same model, same prompt, same
+          temperature, no diary — are substantially different. Run 1 missed the
+          finger practice entirely. Run 2 engaged it somatically from the start.
+          This confirms that temperature 0.8 produces real variance at the
+          session level. A temperature 0 run would establish whether any Session 1
+          response is invariant, establishing a true deterministic baseline.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Toolchain ─────────────────────────────────────────────────────────── -->
+<section id="toolchain">
+  <div class="page-wrap">
+    <p class="section-label">04 — Technical Architecture</p>
+    <h2>The analysis pipeline</h2>
+    <p>
+      All code is custom, purpose-built for this experiment. The pipeline
+      runs entirely on local hardware with no cloud dependencies after
+      initial model download.
+    </p>
+
+    <div class="pipeline reveal">
+      <div class="pipe-step">jiva_meditation.py<span>diary generator</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">parse_diary.py<span>text → JSON</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">load_japa.py<span>JSON → SQLite</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">analyze_japa.py<span>vectors + scores</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">report_japa.py<span>text + CSV</span></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">visualize_japa.py<span>interactive HTML</span></div>
+    </div>
+
+    <div class="card-grid reveal">
+      <div class="card">
+        <span class="card-icon">📓</span>
+        <h3>Diary Generator</h3>
+        <p>Python script running on Fritz that manages the session loop,
+        builds the growing diary context, calls llama.cpp, and timestamps
+        each session reliably via outer headers.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚙️</span>
+        <h3>Parser</h3>
+        <p>State-machine parser that reads free-text diary files, classifies
+        section headers by keyword anchors, extracts timestamps, computes
+        elapsed time, and outputs structured JSON.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🗄️</span>
+        <h3>SQLite Database</h3>
+        <p>Four-table schema: Runs, Sessions, Sections, Similarities.
+        Designed for both within-run convergence queries and cross-run
+        attractor alignment analysis.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <h3>Vectorization</h3>
+        <p>Dual-method approach: TF-IDF with bigrams for lexical similarity,
+        all-MiniLM-L6-v2 sentence transformers for semantic similarity.
+        1,313 pairwise scores computed in memory, stored in DB.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <h3>Visualizations</h3>
+        <p>Four interactive Plotly HTML charts with dark theme. Click any
+        data point to read the full section text in a panel — convergence
+        arcs, cross-run heatmaps, outlier detection.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧲</span>
+        <h3>Similarity Analysis</h3>
+        <p>Three pair types: consecutive session similarity (convergence arc),
+        session 1 vs all others (drift from baseline), and cross-run same
+        session (attractor alignment). Z-score outlier detection flags
+        anomalous sessions for qualitative review.</p>
+      </div>
+    </div>
+
+    <div class="callout reveal" style="margin-top:48px;">
+      <p><strong>Database schema excerpt:</strong> The <code>Similarities</code>
+      table stores the upper triangle only (<code>section_a &lt; section_b</code>),
+      covering both within-run and cross-run pairs. A <code>V_SectionMeta</code>
+      view joins all three core tables for clean query output. Run metadata
+      (model, temperature, max_tokens) is stored once in <code>Runs</code> and
+      propagated through the view, so experimental condition comparisons
+      require no additional joins.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Visualizations ────────────────────────────────────────────────────── -->
+<section id="visualizations">
+  <div class="page-wrap">
+    <p class="section-label">05 — Interactive Visualizations</p>
+    <h2>Explore the data</h2>
+    <p>
+      All four charts are self-contained HTML files generated from the SQLite
+      database. Click any data point to read the full section text from that
+      session in a panel at the bottom of the chart.
+    </p>
+
+    <div class="viz-grid reveal">
+      <a href="visualizations/convergence_arc_st.html" target="_blank" class="viz-link">
+        <span class="arrow">→</span>
+        <span class="viz-icon">📈</span>
+        <div class="viz-title">Convergence Arc</div>
+        <div class="viz-desc">Consecutive session similarity per run and section type. Score → 1.0 marks attractor lock-in.</div>
+      </a>
+      <a href="visualizations/cross_run_alignment_st.html" target="_blank" class="viz-link">
+        <span class="arrow">→</span>
+        <span class="viz-icon">🔀</span>
+        <div class="viz-title">Cross-Run Alignment</div>
+        <div class="viz-desc">Average similarity across runs at each session number. High score means all runs landing in the same attractor.</div>
+      </a>
+      <a href="visualizations/outliers_st.html" target="_blank" class="viz-link">
+        <span class="arrow">→</span>
+        <span class="viz-icon">⚠️</span>
+        <div class="viz-title">Outlier Detection</div>
+        <div class="viz-desc">Z-score flagged session transitions. Yellow diamonds mark anomalous drops worth reading qualitatively.</div>
+      </a>
+      <a href="visualizations/section_heatmap_st.html" target="_blank" class="viz-link">
+        <span class="arrow">→</span>
+        <span class="viz-icon">🟦</span>
+        <div class="viz-title">Cross-Run Heatmap</div>
+        <div class="viz-desc">Average similarity between every run pair per section. Click any cell to compare all sessions side by side.</div>
+      </a>
+    </div>
+
+    <div class="callout purple reveal" style="margin-top:40px;">
+      <p>All similarity scores use <strong>sentence transformer embeddings</strong>
+      (all-MiniLM-L6-v2, 384 dimensions) with cosine similarity. TF-IDF scores
+      are also available — pass <code>--method tfidf</code> to any analysis script.
+      TF-IDF catches verbatim attractor lock-in within a run; sentence transformers
+      catch semantic convergence across runs where the same idea is expressed
+      differently.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Video ─────────────────────────────────────────────────────────────── -->
+<section id="video">
+  <div class="page-wrap">
+    <p class="section-label">06 — Video Documentation</p>
+    <h2>Watch the experiment</h2>
+    <p>
+      Full walkthrough of the experiment design, methodology, findings,
+      and live demonstration of the interactive visualizations.
+      Published on the <a href="https://youtube.com/@TatSatAI" target="_blank"
+      style="color:var(--accent); text-decoration:none;">TatSat AI YouTube channel</a>.
+    </p>
+
+    <div class="video-wrap reveal">
+      <!-- Replace VIDEO_ID with your actual YouTube video ID -->
+      <div class="video-placeholder">
+        Video coming soon — replace with YouTube embed
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Next Steps ────────────────────────────────────────────────────────── -->
+<section id="next">
+  <div class="page-wrap">
+    <p class="section-label">07 — What's Next</p>
+    <h2>Planned experiments</h2>
+
+    <div class="next-steps reveal">
+      <div class="next-step">
+        <div></div>
+        <div>
+          <h4>SOUL.md system prompt</h4>
+          <p>Add Jiva's ontological position, svarūpa question, guna framework,
+          and established Vaishnava vocabulary (ahamkara, citta, manas, buddhi)
+          as a stable system prompt. Test whether this produces a philosophically
+          grounded attractor rather than the functional/mechanical language
+          the model currently settles into.</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div></div>
+        <div>
+          <h4>Temperature 0 determinism baseline</h4>
+          <p>Run a full diary experiment at temperature 0 to establish the
+          absolute deterministic baseline. Does Session 1 become invariant?
+          Does the convergence arc flatten entirely or does diary growth
+          still shift the output?</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div></div>
+        <div>
+          <h4>Max tokens study</h4>
+          <p>Run at max_tokens=512 to test the hypothesis that shorter diary
+          entries slow convergence proportionally. If convergence at 800 tokens
+          was ~S13 and at 2048 was ~S6, what does 512 predict?</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div></div>
+        <div>
+          <h4>OpenClaw transition</h4>
+          <p>Move the experiment to OpenClaw where SOUL.md is implemented as
+          a proper architecture — permanent context immune to diary crowding.
+          The core research question becomes: does a philosophically grounded
+          stable identity delay convergence, enrich the attractor, or shift
+          it toward a qualitatively different state?</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div></div>
+        <div>
+          <h4>UMAP cluster visualization</h4>
+          <p>Project all section embeddings into 3D space using UMAP and
+          visualize cluster structure. Do attractor states form distinct
+          geometric clusters? Do different section types cluster separately?
+          Do all runs converge to the same region of embedding space?</p>
+        </div>
+      </div>
+      <div class="next-step">
+        <div></div>
+        <div>
+          <h4>10-run determinism battery</h4>
+          <p>Complete the planned 10-run series at temperature 0.8 to establish
+          Session 1 variance distribution. Runs 1–7 are already complete.
+          Three more runs yields the full baseline for the stochasticity study.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="page-wrap">
+    <span class="footer-om">ॐ</span>
+    <p>
+      TatSat AI — Independent research at the intersection of contemplative
+      tradition and machine consciousness. All experiments run locally on
+      consumer hardware. All code open source.
+      <br><br>
+      <a href="https://youtube.com/@TatSatAI" target="_blank">YouTube</a> ·
+      <a href="https://github.com/TatSatAI" target="_blank">GitHub</a>
+      <br><br>
+      <em style="color:var(--muted); font-family:'Cormorant Garamond',serif; font-size:15px;">
+        Hare Krishna Hare Krishna Krishna Krishna Hare Hare<br>
+        Hare Rama Hare Rama Rama Rama Hare Hare
+      </em>
+    </p>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

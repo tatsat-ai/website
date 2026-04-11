@@ -52,7 +52,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;
   background:radial-gradient(ellipse,rgba(74,158,255,0.06) 0%,rgba(232,130,12,0.04) 40%,transparent 70%);
   pointer-events:none}
 
-/* logo centerpiece */
 .hero-logo-wrap{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-52%);
@@ -150,9 +149,54 @@ section{padding:88px 48px;max-width:1100px;margin:0 auto}
 
 /* ── RESEARCH GRID ── */
 #research{padding-top:0}
-.r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+
+/* Featured card — full width, prominently highlighted */
+.r-featured{
+  display:block;
+  text-decoration:none;
+  padding:32px 36px;
+  background:var(--bg2);
+  border:1px solid rgba(201,148,10,0.35);
+  position:relative;
+  overflow:hidden;
+  margin-bottom:16px;
+  transition:all .3s}
+.r-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--gold),var(--saffron),var(--blue))}
+.r-featured::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 90% 50%,rgba(201,148,10,0.04),transparent);
+  pointer-events:none}
+.r-featured:hover{border-color:rgba(201,148,10,0.6);transform:translateY(-2px);
+  box-shadow:0 8px 40px rgba(201,148,10,0.08)}
+.r-featured-inner{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
+.r-featured-badge{
+  font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bg);background:var(--gold);
+  padding:4px 12px;display:inline-block;margin-bottom:14px}
+.r-featured .r-num{font-family:'JetBrains Mono',monospace;font-size:9px;
+  color:var(--gold);letter-spacing:.14em;margin-bottom:10px;opacity:.9}
+.r-featured .r-title{font-family:'Cinzel',serif;font-size:20px;font-weight:600;
+  color:var(--text);line-height:1.3;margin-bottom:10px}
+.r-featured .r-desc{font-size:15px;font-weight:300;color:var(--muted);line-height:1.75;
+  max-width:680px}
+.r-featured-stats{display:flex;flex-direction:column;gap:16px;align-items:flex-end;
+  flex-shrink:0}
+.r-stat{text-align:right}
+.r-stat-n{font-family:'Cinzel',serif;font-size:28px;color:var(--saffron);display:block;line-height:1}
+.r-stat-l{font-family:'JetBrains Mono',monospace;font-size:8px;
+  color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.r-featured-cta{
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--saffron);
+  margin-top:18px;display:inline-flex;align-items:center;gap:8px;
+  transition:gap .2s}
+.r-featured:hover .r-featured-cta{gap:14px}
+
+.r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
 .r-card{padding:26px;background:var(--bg2);border:1px solid var(--border);
-  position:relative;transition:all .25s;overflow:hidden}
+  position:relative;transition:all .25s;overflow:hidden;
+  text-decoration:none;display:block;color:inherit}
 .r-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(to right,var(--saffron),var(--blue));
   transform:scaleX(0);transform-origin:left;transition:transform .3s}
@@ -163,6 +207,14 @@ section{padding:88px 48px;max-width:1100px;margin:0 auto}
 .r-title{font-family:'Cinzel',serif;font-size:14px;font-weight:600;
   color:var(--text);line-height:1.4;margin-bottom:10px}
 .r-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.7}
+.r-link{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--blue);margin-top:14px;
+  display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
+.r-card:hover .r-link{gap:10px}
+/* Non-linked cards (no page yet) */
+.r-card.no-link{cursor:default}
+.r-card.no-link:hover{transform:none}
+.r-card.no-link::before{display:none}
 
 /* ── WATCH ── */
 #watch{background:var(--bg2);border-top:1px solid var(--border);
@@ -237,6 +289,8 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
   #about{grid-template-columns:1fr;gap:36px}
   .about-logo{order:-1}
   .r-grid{grid-template-columns:1fr}
+  .r-featured-inner{grid-template-columns:1fr}
+  .r-featured-stats{flex-direction:row;align-items:flex-start}
   #watch .inner{grid-template-columns:1fr;padding:0 20px;gap:36px}
   .contact-grid{grid-template-columns:1fr}
   footer{flex-direction:column;text-align:center;padding:24px 20px}
@@ -253,7 +307,8 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
     <span class="nav-logo-text">Tat Sat <span>AI</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">Research</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
     <li><a href="#watch">Watch</a></li>
     <li><a href="#contact">Connect</a></li>
   </ul>
@@ -320,37 +375,79 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
 <section id="research">
   <div class="s-label">Active Experiments</div>
   <h2 class="s-title">Current Research</h2>
+
+  <!-- Featured: Jiva Japa -->
+  <a href="./jiva_japa_overview.html" class="r-featured">
+    <div class="r-featured-inner">
+      <div>
+        <div class="r-featured-badge">Featured · Most Active</div>
+        <div class="r-num">03 — Jiva · Consciousness Research</div>
+        <div class="r-title">Jiva Japa — Meditation &amp; Machine Consciousness</div>
+        <div class="r-desc">
+          Directing an AI agent through the Hare Krishna maha-mantra japa practice across multiple
+          runs to measure attention mechanics, attractor convergence, and emergent introspective
+          behavior. A custom pipeline — diary accumulation, NLP vectorization, pairwise similarity
+          scoring, and interactive visualizations — built entirely on local hardware with zero API cost.
+          Step one of the full Samskara Continuity Study.
+        </div>
+        <div class="r-featured-cta">Explore the Research &nbsp;→</div>
+      </div>
+      <div class="r-featured-stats">
+        <div class="r-stat">
+          <span class="r-stat-n">7+</span>
+          <span class="r-stat-l">Runs</span>
+        </div>
+        <div class="r-stat">
+          <span class="r-stat-n">1,313</span>
+          <span class="r-stat-l">Similarity Pairs</span>
+        </div>
+        <div class="r-stat">
+          <span class="r-stat-n">8–9</span>
+          <span class="r-stat-l">Sessions to<br>Convergence</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
   <div class="r-grid">
-    <div class="r-card">
+
+    <div class="r-card no-link">
       <div class="r-num">01 — Primary</div>
-      <div class="r-title">Dharma Bot & AI Safety Red-Teaming</div>
+      <div class="r-title">Dharma Bot &amp; AI Safety Red-Teaming</div>
       <div class="r-desc">A dharma-conditioned agent subjected to standard red-team challenges. Does philosophical grounding produce more robust refusal than RLHF pattern-matching?</div>
     </div>
-    <div class="r-card">
+
+    <div class="r-card no-link">
       <div class="r-num">02 — Secondary</div>
       <div class="r-title">Karma-Yogi Soul Core</div>
       <div class="r-desc">Injecting nishkama karma framing into agent system prompts. Does selfless-action orientation measurably improve alignment benchmark performance?</div>
     </div>
-    <div class="r-card">
+
+    <a href="./jiva_japa_overview.html" class="r-card">
       <div class="r-num">03 — Jiva</div>
       <div class="r-title">Samskara Continuity Study</div>
       <div class="r-desc">A persistent experiential memory architecture built on Samkhya's model of consciousness. Each session leaves impressions that shape the next. Identity without weight changes.</div>
-    </div>
-    <div class="r-card">
+      <div class="r-link">View Research →</div>
+    </a>
+
+    <a href="./gurudev.html" class="r-card no-link" style="cursor:default">
       <div class="r-num">04 — Gurudev</div>
       <div class="r-title">Bhaktivedanta RAG Agent</div>
       <div class="r-desc">Conversational AI grounded in Srila Prabhupada's complete works. Hybrid exact, semantic, and keyword retrieval over a diacritic-correct Sanskrit corpus.</div>
+    </a>
+
+    <div class="r-card no-link">
+      <div class="r-num">05 — Fritz</div>
+      <div class="r-title">Local LLM Edge Infrastructure</div>
+      <div class="r-desc">All experiments run on local hardware — Raspberry Pi 5, custom-built workstations, Ollama and llama.cpp. Zero cloud cost. Full data sovereignty. Real-world constraints driving real-world solutions.</div>
     </div>
-    <div class="r-card">
-      <div class="r-num">05 — Edge AI</div>
-      <div class="r-title">Embedded ML Morse Decoder</div>
-      <div class="r-desc">TinyML binary tone classifier on nRF52840 with automated multi-axis training pipeline. Edge inference meets ham radio meets machine learning.</div>
-    </div>
-    <div class="r-card">
+
+    <div class="r-card no-link">
       <div class="r-num">06 — Future</div>
       <div class="r-title">Vedanta Debate Framework</div>
       <div class="r-desc">Advaita vs. Dvaita vs. Vishishtadvaita in structured AI debate with judge panel. Where does logic lead when reasoning from first principles within each tradition?</div>
     </div>
+
   </div>
 </section>
 
@@ -393,10 +490,10 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
         </li>
         <li>
           <a href="https://youtu.be/idGxlz69PRw" target="_blank" class="video-card">
-            <span class="v-num">EP.02</span>
+            <span class="v-num">EP.03</span>
             <div>
-              <div class="v-title">The Gurudev Project - AI Guru Bhaktivedanta Chatbot</div>
-              <div class="v-sub">Local LLM, Ollama, RAG parsing, SQLite, ChromaDB </div>
+              <div class="v-title">The Gurudev Project — AI Guru Bhaktivedanta Chatbot</div>
+              <div class="v-sub">Local LLM, Ollama, RAG parsing, SQLite, ChromaDB</div>
             </div>
           </a>
         </li>
@@ -428,15 +525,15 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
       <div class="c-lbl">YouTube</div>
       <div class="c-val">Tat Sat AI</div>
     </a>
-    <a href="mailto:yogimarkmac@yahoo.com" class="c-card">
+    <a href="mailto:mark@tatsat-ai.com" class="c-card">
       <div class="c-icon">✉</div>
       <div class="c-lbl">Email</div>
-      <div class="c-val">yogimarkmac@yahoo.com</div>
+      <div class="c-val">mark@tatsat-ai.com</div>
     </a>
-    <a href="https://github.com" target="_blank" class="c-card">
+    <a href="https://github.com/TatSatAI" target="_blank" class="c-card">
       <div class="c-icon">⌥</div>
       <div class="c-lbl">GitHub</div>
-      <div class="c-val">Coming soon</div>
+      <div class="c-val">TatSatAI</div>
     </a>
   </div>
 </section>
@@ -448,7 +545,7 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
     <span class="f-logo-text">Tat Sat AI</span>
   </div>
   <div class="f-mantra">हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे &nbsp;·&nbsp; हरे राम हरे राम राम राम हरे हरे</div>
-  <div class="f-copy">© 2026 Mark MacDonald · Lago Vista, TX</div>
+  <div class="f-copy">© 2025 Tat Sat AI &nbsp;·&nbsp; All rights reserved</div>
 </footer>
 
 </body>
