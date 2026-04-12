@@ -476,7 +476,7 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
         <blockquote>
           "In life, old entries get summarized and slowly buried or purged altogether.
           All that remains is the unseen effect that the missing has on the remembered."
-          <cite>— On samskaras and machine memory, April 3, 2026, 3AM</cite>
+          <cite>— Madhusudana das, Research Notes, April 3, 2026</cite>
         </blockquote>
         <p>
           This generates a research question nobody has tried to answer: <strong>can you
@@ -598,24 +598,29 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
     </p>
 
     <div class="math-block">
-      <div class="math-label">Depth-Decay Function</div>
+      <div class="math-label">Depth-Decay Function — Normalized</div>
       <div class="math-formula">
-        $$D(R, t) = \frac{R}{1 + \lambda \cdot \log(1 + t)}$$
+        $$D_{norm}(R, t) = \frac{1 - e^{-R/R_0}}{1 + \lambda \cdot \log(1 + t)}$$
       </div>
       <div class="math-vars">
         <p><code>R</code> — reinforcement count: how many times this samskara has been reactivated</p>
         <p><code>t</code> — time elapsed since last activation (in sessions)</p>
+        <p><code>R₀</code> — saturation parameter: the reinforcement count at which D_norm ≈ 0.63. Controls how quickly deep conditioning forms.</p>
         <p><code>λ</code> — decay rate parameter (tunable per experiment)</p>
-        <p><code>D → 0</code> as t → ∞, but never reaches zero — the groove persists indefinitely</p>
+        <p><code>D_norm ∈ [0,1)</code> always — no separate D_max definition needed. The bound is intrinsic.</p>
+        <p><code>R=0</code> always gives D=0 — no experience, no depth, regardless of time elapsed</p>
       </div>
     </div>
 
     <div class="callout">
-      <p><strong>Philosophical grounding:</strong> Samskaras are impressions. Impressions
-      get deeper with repetition. New impressions are soft; old ones are hard.
-      Hardness × Depth = Influence. Logarithmic decay — not exponential —
-      because old samskaras plateau rather than vanish. This is the structure of
-      human psychological conditioning.</p>
+      <p><strong>Why the saturation curve matters:</strong> The numerator
+      \(1 - e^{-R/R_0}\) replaces a linear R, naturally bounding D_norm to [0,1).
+      D_max = 1 emerges implicitly — no separate definition required.
+      The response approaches deterministic with enough reinforcement, but never
+      fully arrives. No finite number of repetitions produces absolute determinism.
+      Logarithmic decay in the denominator — not exponential — because old impressions
+      plateau rather than vanish. At R = R₀, D_norm ≈ 0.63. At R = 2R₀, D_norm ≈ 0.86.
+      R₀ is the key experimental tunable for how quickly deep conditioning forms.</p>
     </div>
 
     <!-- Component 2: W Vector -->
@@ -741,15 +746,16 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
       <div class="math-formula">
         $$\text{fade} = 1 - D_{norm} \qquad H_d = \log(1 + \alpha \cdot t)$$
         $$\text{snap} = \frac{(W \cdot \text{fade} \cdot G_{res})^2}{1 + H_d}$$
-        $$D_{new} = D_{max} \cdot (D_{norm} + \text{snap} \cdot \text{gap})$$
+        $$D_{new} = D_{norm} + \text{snap} \cdot (1 - D_{norm})$$
       </div>
       <div class="math-vars">
-        <p><code>fade</code> — how dormant the samskara is: 1 when fully dormant, 0 when fully active</p>
+        <p><code>fade</code> — how dormant the samskara is: 1 when fully dormant, 0 when fully saturated</p>
         <p><code>H_d</code> — hardness of the dormant state: resistance to snap-back increases with age</p>
         <p><code>snap</code> — the reactivation force: event strength × dormancy × guna resonance, squared</p>
-        <p><code>gap</code> = 1 − D_norm: room available for depth increase</p>
-        <p><code>D_max</code> — maximum achievable depth (R_max dependent)</p>
-        <p>Squaring snap ensures weak events cannot significantly reactivate old deep grooves</p>
+        <p><code>(1 − D_norm)</code> — the gap: room available for depth increase. Replaces the old D_max · gap formulation.</p>
+        <p>D_max is gone — D_norm is intrinsically bounded to [0,1), so D_new is always bounded too</p>
+        <p>When D_norm → 1: fade → 0, snap → 0. A fully saturated samskara cannot be deepened further by any event</p>
+        <p>Squaring snap ensures weak events with marginal resonance produce near-zero reactivation</p>
       </div>
     </div>
 
@@ -1288,7 +1294,7 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
     "The purpose of a human life is to make a contribution that endures.
     This is the contribution."
   </p>
-  <div class="closing-attr">— Research Notes, April 4, 2026</div>
+  <div class="closing-attr">— Madhusudana das, Research Notes, April 4, 2026</div>
 </div>
 
 <!-- FOOTER -->

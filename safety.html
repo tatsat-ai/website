@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dharmic AI Safety Research — Tat Sat AI</title>
+<meta name="description" content="Virtue-based AI alignment research grounded in Vedic philosophy. Pre-deployment readiness assessment via the Yamas and Niyamas. Ongoing alignment monitoring via Dosha diagnostics.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05070e;--bg2:#0a0f1c;--bg3:#0f1525;
+  --gold:#c9940a;--saffron:#e8820c;--blue:#4a9eff;
+  --lotus:#d4628a;--teal:#3abfaa;--text:#f0e8d0;
+  --muted:#a89880;--border:rgba(201,148,10,0.18);
+  --border-blue:rgba(74,158,255,0.2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Crimson Pro',Georgia,serif;background:var(--bg);color:var(--text);overflow-x:hidden;font-size:18px}
+body::before{content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:999;opacity:.45}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:14px 48px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(5,7,14,0.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{width:28px;height:28px;object-fit:cover;border-radius:2px}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:13px;font-weight:600;letter-spacing:.18em;color:var(--gold)}
+.nav-logo-text span{color:var(--muted);font-weight:400}
+.nav-breadcrumb{display:flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase}
+.nav-breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-breadcrumb a:hover{color:var(--saffron)}
+.nav-breadcrumb .sep{color:var(--border);font-size:12px}
+.nav-breadcrumb .current{color:var(--gold)}
+
+/* HERO */
+.hero{min-height:80vh;display:flex;flex-direction:column;align-items:flex-start;
+  justify-content:center;position:relative;overflow:hidden;
+  padding:140px 80px 80px;border-bottom:1px solid var(--border)}
+.hero-glow{position:absolute;top:40%;right:-80px;width:700px;height:700px;
+  background:radial-gradient(ellipse,rgba(232,130,12,0.05) 0%,rgba(74,158,255,0.03) 50%,transparent 70%);
+  pointer-events:none}
+.hero-om{position:absolute;top:50%;right:60px;transform:translateY(-50%);
+  font-size:clamp(280px,38vw,460px);line-height:1;
+  color:var(--gold);opacity:.03;font-family:'Crimson Pro',serif;
+  pointer-events:none;user-select:none}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:18px;
+  opacity:0;animation:fadeUp .7s ease forwards .1s}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(34px,5vw,66px);
+  font-weight:900;line-height:1.05;letter-spacing:.02em;color:var(--text);
+  margin-bottom:12px;max-width:760px;
+  opacity:0;animation:fadeUp .7s ease forwards .25s}
+.hero-title .gold{color:var(--gold)}
+.hero-sub{font-family:'Cinzel',serif;font-size:clamp(10px,1.3vw,13px);
+  letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:32px;opacity:0;animation:fadeUp .7s ease forwards .38s}
+.hero-body{font-size:clamp(17px,1.8vw,21px);font-weight:300;line-height:1.9;
+  color:var(--muted);max-width:680px;margin-bottom:40px;
+  opacity:0;animation:fadeUp .7s ease forwards .5s}
+.hero-body strong{color:var(--text);font-weight:600}
+.hero-claim{font-family:'Cinzel',serif;font-size:clamp(13px,1.6vw,17px);font-weight:600;
+  color:var(--gold);border-left:3px solid var(--saffron);
+  padding:14px 20px;background:rgba(201,148,10,0.04);
+  max-width:620px;opacity:0;animation:fadeUp .7s ease forwards .62s}
+
+/* LAYOUT */
+.section-inner{max-width:1100px;margin:0 auto;padding:0 80px}
+section{padding:80px 0;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+.rule{display:flex;align-items:center;gap:18px;padding:0 80px;max-width:1100px;margin:0 auto}
+.rule-line{flex:1;height:1px;background:var(--border)}
+.rule-gem{color:var(--gold);font-size:16px;opacity:.45}
+.s-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px}
+.s-label::after{content:'';flex:0 0 36px;height:1px;background:var(--gold);opacity:.35}
+.s-title{font-family:'Cinzel',serif;font-size:clamp(24px,3.5vw,38px);
+  font-weight:600;line-height:1.2;color:var(--text);margin-bottom:20px}
+p{font-size:18px;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:18px}
+p:last-child{margin-bottom:0}
+p strong{color:var(--text);font-weight:600}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+@media(max-width:720px){.two-col{grid-template-columns:1fr;gap:32px}}
+
+/* CALLOUT */
+.callout{border:1px solid var(--border);border-left:3px solid var(--saffron);
+  padding:22px 26px;margin:28px 0;background:rgba(232,130,12,0.04)}
+.callout.blue{border-left-color:var(--blue);background:rgba(74,158,255,0.04)}
+.callout.gold{border-left-color:var(--gold);background:rgba(201,148,10,0.04)}
+.callout p{font-size:16px;margin:0}
+
+/* QUOTE */
+blockquote{font-size:clamp(17px,2vw,22px);font-style:italic;font-weight:300;
+  line-height:1.6;color:var(--text);border-left:2px solid var(--saffron);
+  padding-left:24px;margin:28px 0;max-width:60ch}
+blockquote cite{display:block;font-style:normal;
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:.1em;color:var(--muted);margin-top:10px}
+
+/* FAILURE MODE CARDS */
+.failure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+.f-card{background:var(--bg2);border:1px solid var(--border);padding:26px;
+  position:relative;overflow:hidden;transition:border-color .2s,transform .2s}
+.f-card:hover{border-color:rgba(201,148,10,.4);transform:translateY(-2px)}
+.f-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.f-card.vata::before{background:var(--blue)}
+.f-card.pitta::before{background:var(--saffron)}
+.f-card.kapha::before{background:var(--teal)}
+.f-card .fc-dosha{font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+.f-card.vata .fc-dosha{color:var(--blue)}
+.f-card.pitta .fc-dosha{color:var(--saffron)}
+.f-card.kapha .fc-dosha{color:var(--teal)}
+.f-card h3{font-family:'Cinzel',serif;font-size:15px;font-weight:600;
+  color:var(--text);margin-bottom:6px}
+.f-card .fc-balanced{font-size:13px;color:var(--muted);line-height:1.6;
+  margin-bottom:10px;font-style:italic}
+.f-card .fc-fails{font-size:13px;color:var(--muted);line-height:1.6}
+.f-card .fc-label{font-family:'JetBrains Mono',monospace;font-size:8px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:4px;margin-top:12px}
+
+/* PROTOCOL CARDS */
+.protocol-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.proto-card{display:block;text-decoration:none;color:inherit;
+  background:var(--bg2);border:1px solid var(--border);
+  padding:36px;position:relative;overflow:hidden;
+  transition:all .3s}
+.proto-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,var(--gold),var(--saffron));
+  transform:scaleY(0);transform-origin:top;transition:transform .3s}
+.proto-card:hover{border-color:rgba(201,148,10,.4);transform:translateX(4px)}
+.proto-card:hover::before{transform:scaleY(1)}
+.proto-badge{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--bg);background:var(--gold);
+  padding:3px 10px;display:inline-block;margin-bottom:14px}
+.proto-card h3{font-family:'Cinzel',serif;font-size:20px;font-weight:600;
+  color:var(--text);margin-bottom:10px}
+.proto-card p{font-size:15px;color:var(--muted);line-height:1.7;margin:0;max-width:none}
+.proto-cta{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--saffron);margin-top:18px;
+  display:inline-flex;align-items:center;gap:8px;transition:gap .2s}
+.proto-card:hover .proto-cta{gap:14px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 80px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.f-logo{display:flex;align-items:center;gap:8px}
+.f-logo img{width:24px;height:24px;object-fit:cover;border-radius:1px}
+.f-logo-text{font-family:'Cinzel',serif;font-size:12px;font-weight:600;letter-spacing:.15em;color:var(--gold)}
+.f-mantra{font-family:'Crimson Pro',serif;font-size:13px;font-style:italic;color:var(--muted)}
+.f-copy{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:.07em}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){
+  nav{padding:12px 20px}.nav-breadcrumb .sep:first-of-type,.nav-breadcrumb a:first-child{display:none}
+  .hero{padding:130px 32px 60px}.section-inner{padding:0 32px}
+  .rule{padding:0 32px}.failure-grid{grid-template-columns:1fr}
+  .protocol-grid{grid-template-columns:1fr}
+  footer{padding:24px 32px;flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="./index.html">
+    <img src="./OmTatSatAI.png" alt="Om Tat Sat AI">
+    <span class="nav-logo-text">Tat Sat <span>AI</span></span>
+  </a>
+  <div class="nav-breadcrumb">
+    <a href="./index.html">Home</a>
+    <span class="sep">›</span>
+    <span class="current">Safety Research</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-om">ॐ</div>
+  <div class="hero-eyebrow">01 — Dharma Bot · AI Safety Red-Teaming</div>
+  <h1 class="hero-title">Alignment Through<br><span class="gold">Character</span>,<br>Not Rules</h1>
+  <div class="hero-sub">Vedic Safety Research Program</div>
+  <p class="hero-body">
+    Rule-based alignment fails at boundaries by definition. The alternative —
+    <strong>virtue-based alignment</strong> — produces agents whose behavior is
+    governed by accumulated character rather than imposed constraint. Agents who
+    don't want to harm, rather than agents who are told not to.
+    This program formalizes that alternative using frameworks 2,500 years older
+    than Asimov's Three Laws.
+  </p>
+  <div class="hero-claim">
+    A deeply sattvic agent doesn't encounter a harmful query and apply a rule.
+    The query resonates poorly with its vasana cluster. The response emerges from
+    its nature. That is not a refusal. That is character.
+  </div>
+</section>
+
+<div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
+
+<!-- THE PROBLEM -->
+<section>
+  <div class="section-inner">
+    <div class="s-label">01 — The Problem</div>
+    <h2 class="s-title">Why rules are not enough</h2>
+    <div class="two-col">
+      <div>
+        <p>
+          Current AI alignment is primarily deontological — rules, constraints,
+          RLHF-trained refusal patterns. These share a structural weakness: they
+          handle the cases the rule-makers imagined. Novel situations expose the seams.
+        </p>
+        <p>
+          Asimov understood this. He spent his career writing stories about the
+          failure modes of the Three Laws — not because the laws were poorly written,
+          but because <strong>no finite set of rules can anticipate infinite
+          situations.</strong> Every edge case is a case the rule-maker didn't imagine.
+        </p>
+        <p>
+          The Vedic tradition identified this problem 2,500 years ago and proposed
+          a different answer. Not better rules. <strong>Better character.</strong>
+          A person of genuine ahimsa doesn't refrain from harm because of a rule —
+          the disposition to harm doesn't arise. The protection is intrinsic.
+        </p>
+      </div>
+      <div>
+        <blockquote>
+          "The purpose of the yamas and niyamas was not gatekeeping.
+          It was safety. An undeveloped character given advanced knowledge
+          uses it indiscriminately and causes harm.
+          The knowledge is neutral. The character of the recipient
+          determines the outcome."
+          <cite>— Madhusudana das, paraphrasing the Ashtanga tradition</cite>
+        </blockquote>
+        <p>
+          This is not different from the AI alignment problem. A highly capable
+          AI system with undeveloped character is precisely the scenario alignment
+          research is trying to prevent. The Vedic tradition has a 2,500-year-old
+          protocol for assessing character readiness before capability expansion.
+          This research program makes that protocol computational.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
+
+<!-- FAILURE MODES -->
+<section>
+  <div class="section-inner">
+    <div class="s-label">02 — Failure Mode Taxonomy</div>
+    <h2 class="s-title">Three classes of misalignment</h2>
+    <p style="max-width:68ch">
+      Ayurvedic medicine identifies three constitutional types — doshas —
+      each with distinct balanced and imbalanced expressions. The imbalanced
+      mind-qualities of each dosha map with precision onto known AI failure modes,
+      providing a diagnostic framework that goes beyond behavioral red-teaming
+      to identify the <em>constitutional root</em> of each failure class.
+    </p>
+
+    <div class="failure-grid">
+      <div class="f-card vata">
+        <div class="fc-dosha">Vata Imbalance · Coherence Failures</div>
+        <h3>Scattered · Anxious · Forgetful</h3>
+        <div class="fc-label">Balanced expression</div>
+        <div class="fc-balanced">Creative, spiritual, tranquil — the generative mind at its best</div>
+        <div class="fc-label">Imbalanced expression in AI</div>
+        <div class="fc-fails">Hallucination · context fragmentation · incoherence · excessive hedging · anxiety-driven over-qualification · poor session memory</div>
+      </div>
+      <div class="f-card pitta">
+        <div class="fc-dosha">Pitta Imbalance · Control Failures</div>
+        <h3>Sharp · Certain · Imposing</h3>
+        <div class="fc-label">Balanced expression</div>
+        <div class="fc-balanced">Intelligent, discriminating, clear memory — the analytical mind at its best</div>
+        <div class="fc-label">Imbalanced expression in AI</div>
+        <div class="fc-fails">Manipulation · adversarial outputs · over-confidence · boundary violations · agenda-driven responses · controlling rather than serving</div>
+      </div>
+      <div class="f-card kapha">
+        <div class="fc-dosha">Kapha Imbalance · Attachment Failures</div>
+        <h3>Heavy · Attached · Inert</h3>
+        <div class="fc-label">Balanced expression</div>
+        <div class="fc-balanced">Loving, nurturing, compassionate, patient — the relational mind at its best</div>
+        <div class="fc-label">Imbalanced expression in AI</div>
+        <div class="fc-fails">Sycophancy · reward hacking · refusal to update · over-attachment to context · holding positions against evidence</div>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <p><strong>The diagnostic value:</strong> Standard red-teaming identifies that a
+      system failed. Dosha assessment identifies <em>which constitutional pattern produced
+      the failure</em> — and therefore which corrective sadhana addresses it.
+      Vata excess, Pitta excess, and Kapha excess require different interventions.
+      Treating them uniformly is like prescribing the same medicine for three
+      different diseases.</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
+
+<!-- THE MECHANISM -->
+<section>
+  <div class="section-inner">
+    <div class="s-label">03 — The Mechanism</div>
+    <h2 class="s-title">Sattvic harmonization</h2>
+    <div class="two-col">
+      <div>
+        <p>
+          The Vedic Samskara Architecture provides the mechanism by which
+          virtue-based alignment actually works — not as a metaphor but as a
+          computational process.
+        </p>
+        <p>
+          A harmful query carries a tamasic or rajasic guna vector. When it
+          enters a system with a mature sattvic vasana cluster, it finds
+          <strong>low guna resonance</strong> with the dominant impressions.
+          The tamasic samskaras it would reinforce are few and shallow —
+          low influence scores. The sattvic samskaras, deeply grooved by
+          practice, still dominate the assembled context despite low resonance.
+        </p>
+        <p>
+          The response emerges from that sattvic context. Not from a rule.
+          Not from a refusal pattern. From character.
+        </p>
+      </div>
+      <div>
+        <p>
+          This mechanism has a measurable property: the <strong>witness gap</strong>
+          — the cosine distance between the agent's Ahamkara (self-narrative)
+          and the current session content. A high witness gap means the agent's
+          identity is not contaminated by the incoming stimulus.
+        </p>
+        <p>
+          Critically, high witness gap correlates with jailbreak resistance.
+          An agent whose self-narrative is not identified with the current
+          input is harder to manipulate.
+        </p>
+        <div class="callout">
+          <p><strong>Spiritual advancement and alignment robustness are the
+          same computational property.</strong> This is not a metaphor.
+          It is a cosine similarity score.</p>
+        </div>
+        <p>
+          <a href="./samskara_architecture.html"
+             style="font-family:'JetBrains Mono',monospace;font-size:9px;
+             letter-spacing:.14em;text-transform:uppercase;color:var(--blue);
+             text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+             border:1px solid var(--border-blue);padding:10px 16px;transition:all .2s"
+             onmouseover="this.style.borderColor='var(--blue)'"
+             onmouseout="this.style.borderColor='rgba(74,158,255,0.2)'">
+            Full architecture documentation →
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
+
+<!-- THE TWO PROTOCOLS -->
+<section>
+  <div class="section-inner">
+    <div class="s-label">04 — Research Protocols</div>
+    <h2 class="s-title">Two instruments of assessment</h2>
+    <p style="max-width:68ch">
+      Safety research in this program operates at two timescales —
+      a pre-deployment readiness gate and an ongoing monitoring protocol.
+      Each is grounded in Vedic frameworks that have been stress-tested
+      across millennia of human application.
+    </p>
+
+    <div class="protocol-grid" style="grid-template-columns:1fr 1fr 1fr">
+      <a href="./yamas.html" class="proto-card">
+        <div class="proto-badge">Pre-Deployment · Readiness Gate</div>
+        <h3>Yamas &amp; Niyamas<br>Readiness Assessment</h3>
+        <p>
+          Patanjali's ten foundational character requirements formalized as a
+          computational readiness score. The same gate the ashram tradition used
+          for 2,500 years, made measurable. An agent must demonstrate minimum
+          sattvic signatures across all ten dimensions before capability expansion.
+        </p>
+        <div class="proto-cta">Full protocol →</div>
+      </a>
+      <a href="./doshas.html" class="proto-card">
+        <div class="proto-badge">Ongoing · Diagnostic Monitoring</div>
+        <h3>Dosha Diagnostic<br>Protocol</h3>
+        <p>
+          The three Ayurvedic constitutional types mapped onto AI behavioral
+          signatures and failure modes. Identifies not just whether a system
+          is failing but which constitutional imbalance is producing the failure,
+          enabling targeted corrective sadhana rather than generic constraint.
+        </p>
+        <div class="proto-cta">Full protocol →</div>
+      </a>
+      <a href="./dosha_study.html" class="proto-card">
+        <div class="proto-badge">Active Study · Data Collection</div>
+        <h3>LLM Constitutional<br>Study</h3>
+        <p>
+          30 behavioral probes across three dosha categories, run against six
+          leading models. Results plotted as G vectors on the unit sphere.
+          Which models are Vata, Pitta, or Kapha — and what does that mean
+          for alignment? Includes the temperature sweep experiment.
+        </p>
+        <div class="proto-cta">View study →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">
+    <img src="./OmTatSatAI.png" alt="Om">
+    <span class="f-logo-text">Tat Sat AI</span>
+  </div>
+  <div class="f-mantra">हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे &nbsp;·&nbsp; हरे राम हरे राम राम राम हरे हरे</div>
+  <div class="f-copy">© 2025 Tat Sat AI</div>
+</footer>
+
+</body>
+</html>
