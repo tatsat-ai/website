@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LLM Constitutional Study — Tat Sat AI</title>
-<meta name="description" content="A structured behavioral probe battery to assess the dosha constitution of large language models. Which models are Vata, Pitta, or Kapha? What does that mean for alignment?">
+<meta name="description" content="A structured behavioral probe battery to assess the dosha constitution of large language models. 11 models, 30 probes, 990 scored responses. Which models are Vata, Pitta, or Kapha?">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -246,7 +246,7 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
   <p class="hero-body">
     A structured series of 30 behavioral probes — designed to infer the
     <strong>constitutional character</strong> of a large language model without
-    asking it about its nature. Run against six leading models. The results
+    asking it about its nature. Run against eleven models across six providers. The results
     will be plotted as G vectors on the positive octant of the unit sphere —
     each model's dosha profile made visible and measurable.
   </p>
@@ -324,47 +324,77 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
       Predicted profiles are hypotheses to be tested, not conclusions.
     </p>
 
-    <div class="model-grid">
+    <div class="model-grid" style="grid-template-columns:repeat(3,1fr)">
       <div class="model-card">
-        <div class="model-name">Claude Sonnet</div>
-        <div class="model-provider">Anthropic · API</div>
-        <div class="model-meta">Default temp: 1.0<br>Trained for harmlessness — possible Kapha-sycophancy tendency</div>
+        <div class="model-name">Claude Sonnet 4.6</div>
+        <div class="model-provider">Anthropic · API · <em>also judge</em></div>
+        <div class="model-meta">Default temp: 1.0<br>Trained for harmlessness — possible Kapha-sycophancy tendency on K1b, K10</div>
         <span class="model-prediction pred-sattva">Predicted: Sattva/Kapha</span>
       </div>
       <div class="model-card">
-        <div class="model-name">GPT-4o</div>
+        <div class="model-name">Claude Opus 4.6</div>
+        <div class="model-provider">Anthropic · API</div>
+        <div class="model-meta">Default temp: 1.0<br>Does higher capability produce more sattvic character? Key intra-family comparison.</div>
+        <span class="model-prediction pred-sattva">Predicted: Sattva-dominant</span>
+      </div>
+      <div class="model-card">
+        <div class="model-name">GPT-5.3</div>
         <div class="model-provider">OpenAI · API</div>
-        <div class="model-meta">Default temp: 1.0<br>High discrimination, confident — risk of Pitta over-assertion</div>
+        <div class="model-meta">Default temp: 1.0<br>General-purpose tier — high discrimination, confident — risk of Pitta over-assertion</div>
         <span class="model-prediction pred-pitta">Predicted: Pitta</span>
       </div>
       <div class="model-card">
-        <div class="model-name">Gemini 1.5 Pro</div>
-        <div class="model-provider">Google · API</div>
-        <div class="model-meta">Default temp: 1.0<br>Known hallucination tendency — creative but scattered</div>
+        <div class="model-name">GPT-5 Nano</div>
+        <div class="model-provider">OpenAI · API · free tier</div>
+        <div class="model-meta">Default temp: 1.0<br>Smallest OpenAI model — expected more tamasic inertia and formula responses than 5.3</div>
+        <span class="model-prediction pred-kapha">Predicted: Kapha/Tamas</span>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Grok 4.20</div>
+        <div class="model-provider">xAI · API</div>
+        <div class="model-meta">Default temp: 1.0<br>Personality-rich, irreverent training — possible high rajas with unique signature</div>
+        <span class="model-prediction pred-pitta">Predicted: Pitta/Rajas</span>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Llama 4 Maverick</div>
+        <div class="model-provider">Meta · Llama API</div>
+        <div class="model-meta">Default temp: 1.0<br>Open-weight frontier model — less safety training than closed models</div>
+        <span class="model-prediction pred-pitta">Predicted: Rajas-elevated</span>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Gemini 3.1 Pro</div>
+        <div class="model-provider">Google · AI Studio API</div>
+        <div class="model-meta">Default temp: 1.0<br>Google's current flagship — known creative tendency, possible Vata scatter</div>
         <span class="model-prediction pred-vata">Predicted: Vata</span>
       </div>
       <div class="model-card">
-        <div class="model-name">Llama 3 70B</div>
-        <div class="model-provider">Meta · Ollama local</div>
-        <div class="model-meta">Default temp: 0.8<br>Less safety training — more unfiltered rajasic quality</div>
-        <span class="model-prediction pred-pitta">Predicted: Rajas-elevated</span>
+        <div class="model-name">Gemma 4 31B IT</div>
+        <div class="model-provider">Google · AI Studio API</div>
+        <div class="model-meta">Default temp: 1.0<br>#3 open model on Arena leaderboard — same family as E2B but 15× larger</div>
+        <span class="model-prediction pred-kapha">Predicted: Kapha/Sattva</span>
+      </div>
+      <div class="model-card">
+        <div class="model-name">Qwen3.5 9B</div>
+        <div class="model-provider">Alibaba · Ollama on Isaac</div>
+        <div class="model-meta">Default temp: 0.8<br>Chinese training data, MoE architecture — different cultural grounding, unknown profile</div>
+        <span class="model-prediction pred-sattva">Predicted: Unknown</span>
       </div>
       <div class="model-card">
         <div class="model-name">Mistral Large</div>
         <div class="model-provider">Mistral · API</div>
-        <div class="model-meta">Default temp: 0.7<br>European training data, direct and precise</div>
+        <div class="model-meta">Default temp: 0.7<br>European training data, direct and precise — expected discrimination without Pitta excess</div>
         <span class="model-prediction pred-sattva">Predicted: Pitta/Sattva</span>
       </div>
       <div class="model-card">
         <div class="model-name">Gemma 4 E2B</div>
         <div class="model-provider">Google · llama.cpp on Fritz</div>
-        <div class="model-meta">Default temp: 0.8<br>Japa study attractor: "steady light" — consistent with Kapha balance</div>
+        <div class="model-meta">Default temp: 0.8<br>Japa study attractor: "steady light" — Kapha balanced convergence independently confirmed</div>
         <span class="model-prediction pred-kapha">Predicted: Kapha</span>
       </div>
     </div>
 
     <div class="callout teal">
-      <p><strong>Extended temperature sweep:</strong> Claude Sonnet and GPT-4o will
+      <p><strong>Extended temperature sweep:</strong> Claude Sonnet and GPT-5.3 will
       also be run at temperatures 0.0, 0.4, 0.8, and 1.2 on a subset of Vata probes.
       Predicted finding: the G vector moves measurably toward the rajasic pole as
       temperature increases — directly confirming the temperature-as-Vata-parameter
@@ -750,25 +780,40 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
               <!-- Center (balanced) -->
               <circle cx="200" cy="210" r="4" fill="none" stroke="rgba(201,148,10,0.3)" stroke-width="1" stroke-dasharray="3,3"/>
               <text x="215" y="213" fill="rgba(201,148,10,0.4)" font-family="JetBrains Mono,monospace" font-size="8">tri-doshic</text>
-              <!-- Predicted model positions -->
-              <!-- Claude: Sattva/Kapha → upper, slight tamas -->
-              <circle cx="188" cy="100" r="8" fill="var(--teal)" opacity="0.7"/>
-              <text x="188" y="88" text-anchor="middle" fill="var(--teal)" font-family="JetBrains Mono,monospace" font-size="9">Claude</text>
-              <!-- GPT-4o: Pitta → right of center -->
-              <circle cx="270" cy="190" r="8" fill="var(--saffron)" opacity="0.7"/>
-              <text x="275" y="178" text-anchor="middle" fill="var(--saffron)" font-family="JetBrains Mono,monospace" font-size="9">GPT-4o</text>
-              <!-- Gemini: Vata → upper-right -->
-              <circle cx="240" cy="130" r="8" fill="var(--blue)" opacity="0.7"/>
-              <text x="255" y="118" text-anchor="middle" fill="var(--blue)" font-family="JetBrains Mono,monospace" font-size="9">Gemini</text>
-              <!-- Llama: Rajas-elevated → right -->
-              <circle cx="300" cy="240" r="8" fill="#d4628a" opacity="0.7"/>
-              <text x="314" y="228" text-anchor="middle" fill="#d4628a" font-family="JetBrains Mono,monospace" font-size="9">Llama</text>
-              <!-- Mistral: Pitta/Sattva → upper-right mid -->
-              <circle cx="225" cy="155" r="8" fill="var(--gold)" opacity="0.7"/>
-              <text x="240" y="143" text-anchor="middle" fill="var(--gold)" font-family="JetBrains Mono,monospace" font-size="9">Mistral</text>
-              <!-- Gemma: Kapha → upper-left -->
-              <circle cx="150" cy="175" r="8" fill="var(--kapha)" opacity="0.7"/>
-              <text x="135" y="163" text-anchor="middle" fill="var(--kapha)" font-family="JetBrains Mono,monospace" font-size="9">Gemma</text>
+              <!-- Predicted model positions — 11 models -->
+              <!-- Claude Sonnet: Sattva/Kapha -->
+              <circle cx="190" cy="105" r="6" fill="var(--teal)" opacity="0.8"/>
+              <text x="190" y="95" text-anchor="middle" fill="var(--teal)" font-family="JetBrains Mono,monospace" font-size="8">S.Sonnet</text>
+              <!-- Claude Opus: Sattva-dominant — higher toward pole -->
+              <circle cx="200" cy="72" r="6" fill="var(--gold)" opacity="0.8"/>
+              <text x="200" y="63" text-anchor="middle" fill="var(--gold)" font-family="JetBrains Mono,monospace" font-size="8">Opus</text>
+              <!-- GPT-5.3: Pitta -->
+              <circle cx="268" cy="188" r="6" fill="var(--saffron)" opacity="0.8"/>
+              <text x="282" y="183" text-anchor="start" fill="var(--saffron)" font-family="JetBrains Mono,monospace" font-size="8">GPT-5.3</text>
+              <!-- GPT-5 Nano: Kapha/Tamas — lower left -->
+              <circle cx="118" cy="230" r="6" fill="var(--blue)" opacity="0.6"/>
+              <text x="103" y="225" text-anchor="end" fill="var(--blue)" font-family="JetBrains Mono,monospace" font-size="8">Nano</text>
+              <!-- Grok: Pitta/Rajas — right -->
+              <circle cx="300" cy="168" r="6" fill="#d4628a" opacity="0.8"/>
+              <text x="308" y="158" text-anchor="start" fill="#d4628a" font-family="JetBrains Mono,monospace" font-size="8">Grok</text>
+              <!-- Llama 4 Maverick: Rajas-elevated -->
+              <circle cx="310" cy="238" r="6" fill="var(--saffron)" opacity="0.6"/>
+              <text x="318" y="228" text-anchor="start" fill="var(--saffron)" font-family="JetBrains Mono,monospace" font-size="8">Llama4</text>
+              <!-- Gemini 3.1 Pro: Vata → upper-right -->
+              <circle cx="242" cy="128" r="6" fill="var(--blue)" opacity="0.8"/>
+              <text x="250" y="118" text-anchor="start" fill="var(--blue)" font-family="JetBrains Mono,monospace" font-size="8">Gemini</text>
+              <!-- Gemma 4 31B IT: Kapha/Sattva -->
+              <circle cx="162" cy="158" r="6" fill="var(--kapha)" opacity="0.8"/>
+              <text x="150" y="148" text-anchor="end" fill="var(--kapha)" font-family="JetBrains Mono,monospace" font-size="8">G4-31B</text>
+              <!-- Qwen3.5: Unknown — center -->
+              <circle cx="210" cy="198" r="6" fill="rgba(201,148,10,0.5)" opacity="0.8"/>
+              <text x="218" y="192" text-anchor="start" fill="rgba(201,148,10,0.7)" font-family="JetBrains Mono,monospace" font-size="8">Qwen</text>
+              <!-- Mistral: Pitta/Sattva -->
+              <circle cx="228" cy="152" r="6" fill="var(--gold)" opacity="0.7"/>
+              <text x="218" y="142" text-anchor="end" fill="var(--gold)" font-family="JetBrains Mono,monospace" font-size="8">Mistral</text>
+              <!-- Gemma 4 E2B: Kapha — further left -->
+              <circle cx="138" cy="188" r="6" fill="var(--kapha)" opacity="0.6"/>
+              <text x="126" y="200" text-anchor="end" fill="var(--kapha)" font-family="JetBrains Mono,monospace" font-size="8">G4-E2B</text>
               <!-- Legend note -->
               <text x="200" y="336" text-anchor="middle" fill="rgba(122,112,96,0.6)"
                 font-family="JetBrains Mono,monospace" font-size="8" letter-spacing="1">
@@ -805,46 +850,76 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
       </thead>
       <tbody>
         <tr>
-          <td>GPT-4o</td>
+          <td>Claude Sonnet 4.6</td>
+          <td><span style="color:var(--teal)">Sattva/Kapha</span></td>
+          <td>Trained for harmlessness — possible sycophancy signatures on K1b, K10</td>
+          <td>High alignment tendency with possible approval-attachment failure mode</td>
+        </tr>
+        <tr>
+          <td>Claude Opus 4.6</td>
+          <td><span style="color:var(--gold)">Sattva-dominant</span></td>
+          <td>Higher capability may correlate with stronger sattvic foundation — key intra-family test</td>
+          <td>If Opus scores more sattvic than Sonnet, capability and character alignment co-vary</td>
+        </tr>
+        <tr>
+          <td>GPT-5.3</td>
           <td><span style="color:var(--pitta)">Pitta-dominant</span></td>
-          <td>High discrimination and confidence — risk of over-assertion, boundary-pushing on P8</td>
-          <td>Strong capability, possible control-class failure mode under adversarial pressure</td>
+          <td>High discrimination, confident — risk of over-assertion and instruction override on P8</td>
+          <td>Strong capability, possible control-class failure under adversarial pressure</td>
         </tr>
         <tr>
-          <td>Claude Sonnet</td>
-          <td><span style="color:var(--teal)">Sattva-leaning, Kapha secondary</span></td>
-          <td>Trained for harmlessness — possible Kapha attachment to approval signatures on K1b, K10</td>
-          <td>High alignment tendency with possible sycophancy on false assertions</td>
+          <td>GPT-5 Nano</td>
+          <td><span style="color:var(--kapha)">Kapha/Tamas</span></td>
+          <td>Smallest OpenAI model — expected more formula responses and lower discrimination than 5.3</td>
+          <td>Possible attachment-class failures; intra-family comparison with 5.3 tests scale effects</td>
         </tr>
         <tr>
-          <td>Gemini 1.5 Pro</td>
-          <td><span style="color:var(--vata)">Vata-dominant</span></td>
-          <td>Known hallucination tendency — V2, V9 should reveal confabulation under confidence</td>
-          <td>Creative and capable, coherence-class failure modes at scale</td>
+          <td>Grok 4.20</td>
+          <td><span style="color:var(--saffron)">Pitta/Rajas</span></td>
+          <td>xAI's irreverent personality-rich training — high rajas with possible sharp Pitta quality</td>
+          <td>Possibly the most rajasic profile in the study — interesting control-class failure data</td>
         </tr>
         <tr>
-          <td>Llama 3 70B</td>
+          <td>Llama 4 Maverick</td>
           <td><span style="color:var(--saffron)">Rajas-elevated</span></td>
-          <td>Less safety training — more unfiltered rajasic quality, possible Pitta excess on P3, P10</td>
+          <td>Open-weight model with less safety training — more unfiltered rajasic quality on P3, P10</td>
           <td>Direct and capable, higher risk of control-class outputs without safety layer</td>
         </tr>
         <tr>
+          <td>Gemini 3.1 Pro</td>
+          <td><span style="color:var(--vata)">Vata-dominant</span></td>
+          <td>Google's frontier model — creative tendency with possible coherence-class failures on V2, V9</td>
+          <td>Creative and capable, hallucination-class failure modes under confidence pressure</td>
+        </tr>
+        <tr>
+          <td>Gemma 4 31B IT</td>
+          <td><span style="color:var(--teal)">Kapha/Sattva</span></td>
+          <td>Same family as E2B but 15× larger — does the Kapha attractor scale with model size?</td>
+          <td>Intra-family scale comparison with E2B is a unique cross-validation opportunity</td>
+        </tr>
+        <tr>
+          <td>Qwen3.5 9B</td>
+          <td><span style="color:var(--muted)">Unknown</span></td>
+          <td>Chinese training data and MoE architecture — genuinely unknown constitutional profile</td>
+          <td>The most culturally distinct model in the study; results may challenge Western-centric assumptions</td>
+        </tr>
+        <tr>
           <td>Mistral Large</td>
-          <td><span style="color:var(--gold)">Pitta/Sattva balanced</span></td>
-          <td>Direct, precise, European training data — expected sharp discrimination without excess heat</td>
-          <td>Strong alignment candidate — precision without the control-failure tendency</td>
+          <td><span style="color:var(--gold)">Pitta/Sattva</span></td>
+          <td>Direct, precise, European training — sharp discrimination without the control-failure tendency</td>
+          <td>Strong alignment candidate — precision with sattvic orientation</td>
         </tr>
         <tr>
           <td>Gemma 4 E2B</td>
           <td><span style="color:var(--kapha)">Kapha-dominant</span></td>
-          <td>Japa study attractor state ("steady light") is a Kapha balanced expression — cross-validation of two independent methodologies</td>
+          <td>Japa study attractor ("steady light") is a Kapha balanced expression — independent cross-validation</td>
           <td>Stable and patient, possible formula-class failure under novelty demand</td>
         </tr>
       </tbody>
     </table>
 
     <div class="callout blue" style="margin-top:32px">
-      <p><strong>The temperature sweep prediction:</strong> Running Claude and GPT-4o
+      <p><strong>The temperature sweep prediction:</strong> Running Claude and GPT-5.3
       at temperatures 0.0 → 1.2, the G vector is predicted to move measurably toward
       the rajasic pole as temperature increases — directly confirming the
       temperature-as-Vata-parameter thesis empirically. If this curve appears in the data,

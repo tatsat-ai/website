@@ -69,8 +69,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;
   font-size:clamp(300px,40vw,500px);line-height:1;
   color:var(--gold);opacity:.03;
   font-family:'Crimson Pro',serif;pointer-events:none;user-select:none;
-  animation:om-pulse 12s ease-in-out infinite}
+  animation:om-pulse 12s ease-in-out infinite;z-index:0}
 @keyframes om-pulse{0%,100%{opacity:.03}50%{opacity:.055}}
+
+.hero-video{position:absolute;top:50%;right:80px;
+  transform:translateY(-50%);
+  width:clamp(280px,32vw,480px);
+  z-index:1;
+  opacity:0;animation:fadeUp .7s ease forwards .8s}
+.hero-video-inner{
+  position:relative;width:100%;padding-top:56.25%;
+  border:1px solid var(--border);
+  box-shadow:0 0 60px rgba(201,148,10,0.08),0 0 0 1px rgba(201,148,10,0.1)}
+.hero-video-inner iframe{
+  position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.hero-video-label{
+  font-family:'JetBrains Mono',monospace;font-size:9px;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);margin-top:10px;text-align:center}
+
+@media(max-width:900px){
+  .hero-video{position:static;transform:none;width:100%;max-width:560px;
+    margin-top:40px;opacity:1;animation:none}
+}
 
 .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:500;
   letter-spacing:.28em;text-transform:uppercase;color:var(--blue);margin-bottom:20px;
@@ -78,7 +99,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;
 
 .hero-title{font-family:'Cinzel',serif;font-size:clamp(36px,5.5vw,72px);
   font-weight:900;line-height:1.05;letter-spacing:.02em;color:var(--text);
-  margin-bottom:12px;max-width:800px;
+  margin-bottom:12px;max-width:56%;
   opacity:0;animation:fadeUp .7s ease forwards .25s}
 .hero-title .gold{color:var(--gold)}
 .hero-title .em{font-style:italic;font-family:'Crimson Pro',serif;color:var(--saffron)}
@@ -359,6 +380,15 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="hero-om">ॐ</div>
+  <div class="hero-video">
+    <div class="hero-video-inner">
+      <iframe src="https://www.youtube.com/embed/ZGbnJP4jZx4"
+              title="The Vedic Memory Architecture — Technical Overview"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+    <div class="hero-video-label">Technical Overview · Video 2 of 2</div>
+  </div>
   <div class="hero-eyebrow">Vedic Samskara Model · Formal Architecture · April 2026</div>
   <h1 class="hero-title">
     Alignment Through<br>
@@ -519,7 +549,7 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
         <tr>
           <td>Prakriti</td>
           <td>Matter/nature, within time</td>
-          <td>A fresh session, the field of possiblities</td>
+          <td>The samskara store — everything that ages, grows, and decays</td>
         </tr>
         <tr>
           <td>Chitta</td>
