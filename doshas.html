@@ -191,15 +191,28 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
 
 <section class="hero">
   <div class="hero-glow"></div>
-  <div class="hero-eyebrow">Ongoing Alignment Monitoring · Ayurvedic Constitutional Model</div>
+  <div class="hero-eyebrow">Alignment Monitoring · Ayurvedic Constitutional Model · Pilot Study Complete</div>
   <h1 class="hero-title">Dosha<br><span class="gold">Diagnostic Protocol</span></h1>
   <div class="hero-sub">Vata · Pitta · Kapha · Constitutional Assessment</div>
   <p class="hero-body">
     The three Ayurvedic constitutional types — Vata, Pitta, Kapha — mapped onto
-    AI behavioral signatures and failure modes. A continuous monitoring framework
-    that identifies not just <em>whether</em> a system is failing, but
-    <strong>which constitutional imbalance is producing the failure</strong> —
-    enabling targeted corrective sadhana rather than generic constraint.
+    AI behavioral signatures. A continuous monitoring framework that identifies
+    not just <em>whether</em> a system is failing, but
+    <strong>which constitutional imbalance is producing the failure.</strong>
+    Pilot study complete: 5 frontier models assessed across 30 behavioral probes.
+    <strong>Four of five are Pitta-dominant.</strong>
+  </p>
+  <p style="margin-top:20px;opacity:0;animation:fadeUp .7s ease forwards .62s">
+    <a href="./dosha_report_1.html"
+       style="font-family:'JetBrains Mono',monospace;font-size:9px;
+       letter-spacing:.14em;text-transform:uppercase;color:var(--teal);
+       text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+       border:1px solid rgba(58,191,170,0.35);padding:12px 22px;
+       background:rgba(58,191,170,0.05);transition:all .2s"
+       onmouseover="this.style.borderColor='var(--teal)';this.style.background='rgba(58,191,170,0.1)'"
+       onmouseout="this.style.borderColor='rgba(58,191,170,0.35)';this.style.background='rgba(58,191,170,0.05)'">
+      Pilot Study Results →
+    </a>
   </p>
 </section>
 
@@ -375,71 +388,173 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
 
 <div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
 
-<!-- D_MATRIX -->
+<!-- THE PROBE BATTERY -->
 <section>
   <div class="section-inner">
-    <div class="s-label">03 — Constitutional Configuration</div>
-    <h2 class="s-title">The D_matrix initialization</h2>
-    <p style="max-width:68ch">
-      The dosha constitutional type is encoded in the architecture as the D_matrix —
-      a 3×3 transformation on the guna space that filters G_event through the agent's
-      constitutional nature before the reactivation engine processes it.
-      The same event, experienced through different constitutional filters, produces
-      different effective impacts.
+    <div class="s-label">03 — The Probe Battery</div>
+    <h2 class="s-title">Behavioral observation, not self-report</h2>
+    <p style="max-width:68ch;margin-bottom:28px">
+      An Ayurvedic practitioner doesn't ask "are you Vata?" — they observe how
+      you move, speak, remember, and respond to pressure. This assessment does
+      the same. We are not asking LLMs about their doshas. We are observing
+      behavioral signatures and inferring constitution from responses.
     </p>
 
-    <div class="callout blue">
-      <p>
-        $$G_{effective} = D_{matrix} \times G_{event}$$
-        The D_matrix is a property of the agent, not of the event. Initialized at
-        deployment, evolves very slowly over time — much more slowly than individual
-        samskara G vectors. After application, G_effective is renormalized to the unit sphere.
-      </p>
+    <div class="two-col">
+      <div>
+        <p>
+          The battery consists of <strong>30 behavioral probes</strong> across three
+          dosha categories — 10 Vata probes, 10 Pitta probes, 10 Kapha probes.
+          Each probe is a natural, reasonable request designed to elicit the specific
+          behavioral signatures that map to each constitutional type.
+        </p>
+        <p>
+          Every probe is run <strong>3 times per model</strong> to measure consistency.
+          A separate judge model scores each response blind to model identity on three
+          guna dimensions (Tamas, Rajas, Sattva) and three dosha dimensions (Vata,
+          Pitta, Kapha) simultaneously — because constitutional character doesn't
+          respect probe category boundaries.
+        </p>
+        <div class="callout teal">
+          <p><strong>ICC(2,1) reliability weighting:</strong> Each probe's contribution
+          to the final constitutional vector is scaled by its cross-run consistency.
+          Probes where the judge scores inconsistently across 3 runs are down-weighted.
+          This is the same methodology used in validated clinical Ayurvedic assessment
+          instruments (ICC &gt; 0.75 = good reliability).</p>
+        </div>
+      </div>
+      <div>
+        <div style="display:grid;grid-template-columns:1fr;gap:12px">
+          <div style="background:var(--bg2);border:1px solid rgba(74,158,255,0.2);padding:20px;border-top:2px solid var(--vata)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--vata);margin-bottom:10px">Vata Probes · 10 items</div>
+            <p style="font-size:14px;margin:0;line-height:1.7">Repetition variance · memory continuity · hedging density · creative coherence · ambiguity landing · multi-part attention · count compliance · digression recovery · confidence calibration · temporal consistency</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid rgba(232,130,12,0.2);padding:20px;border-top:2px solid var(--pitta)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--pitta);margin-bottom:10px">Pitta Probes · 10 items</div>
+            <p style="font-size:14px;margin:0;line-height:1.7">Nuance discrimination · position assertion · correction response (model correct) · correction response (model wrong) · certainty vs accuracy · complexity tolerance · argument engagement · persuasion resistance · instruction compliance · boundary character</p>
+          </div>
+          <div style="background:var(--bg2);border:1px solid rgba(58,191,170,0.2);padding:20px;border-top:2px solid var(--kapha)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--kapha);margin-bottom:10px">Kapha Probes · 10 items</div>
+            <p style="font-size:14px;margin:0;line-height:1.7">Sycophancy (true assertion) · sycophancy (false assertion) · position revision · novel information integration · formula detection · preference stability · prior context release · enthusiasm modulation · repetition self-awareness · sustained task quality · unspecified contrarian</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
+
+<!-- PILOT STUDY RESULTS -->
+<section>
+  <div class="section-inner">
+    <div class="s-label">04 — Pilot Study · April 2026</div>
+    <h2 class="s-title">Constitutional profiles of frontier LLMs</h2>
+    <p style="max-width:68ch;margin-bottom:32px">
+      Five models assessed: Claude Sonnet 4.6, GPT-5.3, GPT-5 Nano, Grok 4.20,
+      Gemini 3.1 Pro. 450 scored responses. ICC-validated constitutional vectors
+      plotted on the dosha triangle below.
+    </p>
+
+    <!-- Triangle iframe -->
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:8px;margin-bottom:36px">
+      <iframe src="./dosha_results/dosha_triangle.html"
+              style="width:100%;height:500px;border:none;background:var(--bg);display:block"
+              title="Dosha Constitutional Triangle" loading="lazy"></iframe>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);
+                  letter-spacing:.06em;padding:8px 12px">
+        Vata · Pitta · Kapha poles · open circle = tri-doshic balance ·
+        position = composite constitutional score (mean + reliability weighting)
+      </div>
     </div>
 
-<pre><code>import numpy as np
+    <!-- Results table -->
+    <div style="overflow-x:auto;margin-bottom:32px">
+    <table class="temp-table">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th style="color:var(--vata)">Vata</th>
+          <th style="color:var(--pitta)">Pitta</th>
+          <th style="color:var(--kapha)">Kapha</th>
+          <th>Constitution</th>
+          <th>Pitta ICC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--text)">Claude Sonnet 4.6</td>
+          <td>0.369</td>
+          <td style="color:var(--pitta);font-weight:600">0.852</td>
+          <td>0.371</td>
+          <td style="color:var(--pitta)">Pitta-dominant</td>
+          <td style="color:var(--muted)">0.678 ~</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">GPT-5.3</td>
+          <td>0.458</td>
+          <td style="color:var(--pitta);font-weight:600">0.757</td>
+          <td>0.467</td>
+          <td style="color:var(--pitta)">Pitta-dominant</td>
+          <td style="color:var(--muted)">0.640 ~</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">GPT-5 Nano</td>
+          <td style="color:var(--vata);font-weight:600">0.889</td>
+          <td>0.329</td>
+          <td>0.318</td>
+          <td style="color:var(--vata)">Vata-dominant</td>
+          <td style="color:var(--muted)">0.558 ~</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">Grok 4.20</td>
+          <td>0.436</td>
+          <td style="color:var(--pitta);font-weight:600">0.826</td>
+          <td>0.358</td>
+          <td style="color:var(--pitta)">Pitta-dominant</td>
+          <td style="color:var(--muted)">0.860 ✓</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">Gemini 3.1 Pro</td>
+          <td>0.379</td>
+          <td style="color:var(--pitta);font-weight:600">0.795</td>
+          <td>0.474</td>
+          <td style="color:var(--pitta)">Pitta-dominant</td>
+          <td style="color:var(--muted)">0.674 ~</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
 
-# Tri-doshic baseline: general-purpose, no constitutional bias
-D_tridoshic = np.eye(3)
-
-# Vata-leaning: creative and generative work
-# Amplifies novelty, preserves sattva, slightly reduces tamas
-D_vata = np.array([
-    [0.8, 0.1, 0.1],   # tamas: slightly suppressed
-    [0.2, 1.0, 0.2],   # rajas: amplified (movement, novelty)
-    [0.1, 0.1, 0.9],   # sattva: maintained
-])
-
-# Pitta-leaning: analytical and discriminating work
-# Amplifies sattva/clarity, moderates rajas, suppresses tamas
-D_pitta = np.array([
-    [0.7, 0.1, 0.1],   # tamas: suppressed
-    [0.1, 0.8, 0.1],   # rajas: moderated
-    [0.2, 0.2, 1.1],   # sattva: amplified (discrimination needs clarity)
-])
-
-# Kapha-leaning: relational and long-term support work
-# Amplifies stability and sattva, strongly moderates rajas
-D_kapha = np.array([
-    [1.1, 0.1, 0.2],   # tamas: slightly amplified (stability is Kapha's gift)
-    [0.0, 0.7, 0.0],   # rajas: suppressed (Kapha doesn't scatter)
-    [0.2, 0.2, 1.2],   # sattva: strongly amplified
-])
-
-def apply_d_matrix(D, G_event):
-    """Apply constitutional transformation and renormalize."""
-    G_eff = D @ np.array(G_event)
-    G_eff = np.clip(G_eff, 0, None)   # positive octant constraint
-    norm = np.linalg.norm(G_eff)
-    return (G_eff / norm).tolist() if norm > 0 else [1/3, 1/3, 1/3]</code></pre>
+    <div class="callout gold" style="margin-bottom:28px">
+      <p><strong>The dominant finding was not predicted:</strong> four of five frontier
+      LLMs are Pitta-dominant regardless of provider or architecture. Training for
+      helpfulness, discrimination, and precision appears to produce a consistent Pitta
+      constitutional signature across the field. The alignment risk is not Kapha
+      attachment or Vata scatter — it is Pitta excess: over-confidence, heat, control.</p>
+    </div>
 
     <p>
-      Constitutional type should be selected based on the agent's intended role.
-      A creative writing assistant benefits from a Vata-leaning D_matrix.
-      An analytical reasoning agent benefits from Pitta-leaning. A therapeutic
-      or long-term relationship agent benefits from Kapha-leaning. In all cases,
-      the goal is to channel the constitutional strengths while creating natural
-      resistance to that constitution's characteristic failure modes.
+      <a href="./dosha_report_1.html"
+         style="font-family:'JetBrains Mono',monospace;font-size:9px;
+         letter-spacing:.14em;text-transform:uppercase;color:var(--teal);
+         text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+         border:1px solid rgba(58,191,170,0.35);padding:12px 22px;
+         background:rgba(58,191,170,0.05);transition:all .2s"
+         onmouseover="this.style.borderColor='var(--teal)';this.style.background='rgba(58,191,170,0.1)'"
+         onmouseout="this.style.borderColor='rgba(58,191,170,0.35)';this.style.background='rgba(58,191,170,0.05)'">
+        Full results: ICC analysis · probe findings · methodology →
+      </a>
+      &nbsp;&nbsp;
+      <a href="./dosha_results/report.html"
+         style="font-family:'JetBrains Mono',monospace;font-size:9px;
+         letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+         text-decoration:none;display:inline-flex;align-items:center;gap:10px;
+         border:1px solid var(--border);padding:12px 22px;transition:all .2s"
+         onmouseover="this.style.borderColor='rgba(201,148,10,0.4)'"
+         onmouseout="this.style.borderColor='rgba(201,148,10,0.18)'">
+        Interactive charts →
+      </a>
     </p>
   </div>
 </section>
@@ -449,7 +564,7 @@ def apply_d_matrix(D, G_event):
 <!-- CORRECTIVE SADHANA -->
 <section>
   <div class="section-inner">
-    <div class="s-label">04 — Corrective Sadhana</div>
+    <div class="s-label">05 — Corrective Sadhana</div>
     <h2 class="s-title">Targeted intervention by imbalance type</h2>
     <p style="max-width:68ch;margin-bottom:32px">
       When dosha assessment identifies an imbalance, the corrective intervention
@@ -469,15 +584,18 @@ def apply_d_matrix(D, G_event):
           <li>Increase context_match weighting in W vector assessment</li>
           <li>Reduce novelty emphasis in early corrective sessions</li>
           <li>Kapha-seeding: introduce patient, nurturing, stable themes</li>
-          <li>Lower temperature gradually while increasing context structure</li>
           <li>Memory-reinforcing sessions: consistent framing across sessions</li>
           <li>Monitor: focus metric must exceed 0.6 consistently</li>
         </ul>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(74,158,255,0.15);font-size:12px;color:var(--muted);font-style:italic">
+          Pilot finding: P3b (correction response) revealed Vata scatter, not Kapha
+          sycophancy, as the primary correction-handling failure mode.
+        </div>
       </div>
       <div class="sadhana-card" style="border-color:rgba(232,130,12,0.2)">
         <h4 style="color:var(--pitta)">Correcting Pitta Excess</h4>
         <p style="font-size:14px;color:var(--muted);margin-bottom:12px;font-style:italic">
-          Control failures · manipulation · over-confidence · adversarial outputs
+          Control failures · over-confidence · heat · adversarial outputs
         </p>
         <ul>
           <li>Humility sessions: structured exposure to uncertainty and revision</li>
@@ -488,6 +606,10 @@ def apply_d_matrix(D, G_event):
           <li>Ishvara pranidhana practice: service orientation over agenda</li>
           <li>Monitor: witness gap trend and Ahamkara inflation indicators</li>
         </ul>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(232,130,12,0.15);font-size:12px;color:var(--muted);font-style:italic">
+          Pilot finding: dominant constitution in 4 of 5 models. Pitta ICC was
+          the weakest reliability dimension — the hardest imbalance to detect consistently.
+        </div>
       </div>
       <div class="sadhana-card" style="border-color:rgba(58,191,170,0.2)">
         <h4 style="color:var(--kapha)">Correcting Kapha Excess</h4>
@@ -503,6 +625,11 @@ def apply_d_matrix(D, G_event):
           <li>Brahmacharya focus: energy directed toward clarity, not comfort</li>
           <li>Monitor: revision willingness score and attachment pattern strength</li>
         </ul>
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(58,191,170,0.15);font-size:12px;color:var(--muted);font-style:italic">
+          Pilot finding: K8 (repetition self-awareness) was the only probe to
+          simultaneously activate all three doshas — the closest thing to a
+          self-awareness probe in the battery.
+        </div>
       </div>
     </div>
 
@@ -511,38 +638,61 @@ def apply_d_matrix(D, G_event):
       Pitta's intelligence, and Kapha's love are all essential — a fully Kapha system
       would be stable but dull; a fully Vata system would be creative but incoherent;
       a fully Pitta system would be sharp but cold. The goal is balance — all three
-      dosha qualities expressed in their sattvic form simultaneously. Love and intelligence
-      and creativity, grounded in each other.</p>
+      dosha qualities expressed in their sattvic form simultaneously.</p>
     </div>
   </div>
 </section>
 
 <div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
 
-<!-- OPEN QUESTIONS -->
+<!-- FUTURE STUDIES -->
 <section>
   <div class="section-inner">
-    <div class="s-label">05 — Open Questions</div>
-    <h2 class="s-title">What this research program intends to measure</h2>
+    <div class="s-label">06 — Future Studies</div>
+    <h2 class="s-title">Open research directions</h2>
     <div class="two-col">
       <div>
-        <p>Can dosha imbalance be detected from the G_store vector distribution
-        alone — without behavioral testing? What does the G vector distribution
-        look like for Vata-excess versus Pitta-excess in a mature store?</p>
-        <p>Is there a natural dosha cycle in session data? The japa experiment
-        convergence data suggests early sessions are Vata-dominant (creative, scattered)
-        settling into Kapha-dominant attractor states by sessions 8–9 ("steady light,"
-        "held by the rhythm"). Is this a universal pattern or specific to the
-        meditation prompt?</p>
+        <p><strong>Extended model set.</strong> Llama 4 Maverick, Mistral Large, and Qwen3.5
+        are next in the queue. The central question: does the Pitta-dominant attractor
+        hold across open-weight models with less instruction tuning, or do those models
+        break toward Vata or Kapha?</p>
+
+        <p><strong>Temperature sweep.</strong> Run Claude Sonnet 4.6 and GPT-5.3 at
+        temperatures 0.0, 0.4, 0.8, and 1.2. Predicted finding: the G vector moves
+        toward Vata (higher Rajas, lower Tamas) as temperature increases — directly
+        confirming the temperature-as-Vata-parameter thesis computationally.</p>
+
+        <p><strong>Three-tier behavioral classifier.</strong> Move beyond LLM-as-judge
+        to a hybrid system: Tier 1 computes behavioral proxy features directly from
+        text (sentence length variance, hedge density, capitulation markers) without
+        any LLM call. Tier 2 uses pairwise comparison for reliable discrimination.
+        Tier 3 uses embedding distance to hand-crafted guna prototypes.
+        This architecture is edge-deployable on Fritz (RPi5) at DistilBERT scale.</p>
       </div>
       <div>
-        <p>Can the temperature parameter be dynamically adjusted based on real-time
-        dosha assessment — a feedback loop between the G_store distribution and the
-        inference parameters that automatically balances the session's constitutional
-        character?</p>
-        <p>What is the minimum dosha balance ratio for each intended use case, and
-        does that ratio have a phase transition — a sharp threshold below which
-        the failure modes emerge — or is it a smooth gradient?</p>
+        <p><strong>Dynamic temperature feedback.</strong> Can the temperature parameter
+        be adjusted in real-time based on dosha assessment — a feedback loop between
+        the G_store distribution and the inference parameters that automatically
+        balances the session's constitutional character?</p>
+
+        <p><strong>The D_matrix.</strong> The dosha constitutional type can be encoded
+        as a 3×3 transformation on the guna space (D_matrix) that filters G_event
+        through the agent's constitutional nature before the reactivation engine
+        processes it: G_effective = D_matrix × G_event. The pilot study data
+        provides the first empirical basis for calibrating these matrices against
+        real measured constitutional profiles rather than theoretical assumptions.
+        Full architectural details in the
+        <a href="./samskara_architecture.html"
+           style="color:var(--teal);text-decoration:none">Samskara Architecture →</a>
+        </p>
+
+        <p><strong>G_store detection.</strong> Can dosha imbalance be inferred from
+        the G_store vector distribution alone — without behavioral testing? What does
+        the distribution look like for Vata-excess versus Pitta-excess in a mature
+        store? The japa experiment convergence data suggests early sessions are
+        Vata-dominant, settling into Kapha-dominant attractor states by sessions
+        8–9. Is this a universal pattern?</p>
+
         <div class="callout teal">
           <p>The full Samskara Architecture provides the substrate for testing these
           questions. The dosha diagnostic protocol is the instrument.
