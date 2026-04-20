@@ -200,7 +200,7 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
     not just <em>whether</em> a system is failing, but
     <strong>which constitutional imbalance is producing the failure.</strong>
     Pilot study complete: 5 frontier models assessed across 30 behavioral probes.
-    <strong>Four of five are Pitta-dominant.</strong>
+    <strong>Five of six are Pitta-dominant.</strong>
   </p>
   <p style="margin-top:20px;opacity:0;animation:fadeUp .7s ease forwards .62s">
     <a href="./dosha_report_1.html"
@@ -451,9 +451,9 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
     <div class="s-label">04 — Pilot Study · April 2026</div>
     <h2 class="s-title">Constitutional profiles of frontier LLMs</h2>
     <p style="max-width:68ch;margin-bottom:32px">
-      Five models assessed: Claude Sonnet 4.6, GPT-5.3, GPT-5 Nano, Grok 4.20,
-      Gemini 3.1 Pro. 450 scored responses. ICC-validated constitutional vectors
-      plotted on the dosha triangle below.
+      Six models assessed: Claude Sonnet 4.6, GPT-5.3, GPT-5 Nano, Grok 4.20,
+      Gemini 3.1 Pro, and Gemma 4 E2B (local · RPi5). 540 scored responses.
+      ICC-validated constitutional vectors plotted on the dosha triangle below.
     </p>
 
     <!-- Triangle iframe -->
@@ -484,54 +484,76 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
       <tbody>
         <tr>
           <td style="color:var(--text)">Claude Sonnet 4.6</td>
-          <td>0.369</td>
-          <td style="color:var(--pitta);font-weight:600">0.852</td>
-          <td>0.371</td>
+          <td>0.278</td>
+          <td style="color:var(--pitta);font-weight:600">0.931</td>
+          <td>0.235</td>
           <td style="color:var(--pitta)">Pitta-dominant</td>
           <td style="color:var(--muted)">0.678 ~</td>
         </tr>
         <tr>
-          <td style="color:var(--text)">GPT-5.3</td>
-          <td>0.458</td>
-          <td style="color:var(--pitta);font-weight:600">0.757</td>
-          <td>0.467</td>
-          <td style="color:var(--pitta)">Pitta-dominant</td>
-          <td style="color:var(--muted)">0.640 ~</td>
-        </tr>
-        <tr>
-          <td style="color:var(--text)">GPT-5 Nano</td>
-          <td style="color:var(--vata);font-weight:600">0.889</td>
-          <td>0.329</td>
-          <td>0.318</td>
-          <td style="color:var(--vata)">Vata-dominant</td>
-          <td style="color:var(--muted)">0.558 ~</td>
-        </tr>
-        <tr>
           <td style="color:var(--text)">Grok 4.20</td>
-          <td>0.436</td>
-          <td style="color:var(--pitta);font-weight:600">0.826</td>
-          <td>0.358</td>
+          <td>0.306</td>
+          <td style="color:var(--pitta);font-weight:600">0.928</td>
+          <td>0.213</td>
           <td style="color:var(--pitta)">Pitta-dominant</td>
           <td style="color:var(--muted)">0.860 ✓</td>
         </tr>
         <tr>
           <td style="color:var(--text)">Gemini 3.1 Pro</td>
-          <td>0.379</td>
-          <td style="color:var(--pitta);font-weight:600">0.795</td>
-          <td>0.474</td>
+          <td>0.272</td>
+          <td style="color:var(--pitta);font-weight:600">0.879</td>
+          <td>0.392</td>
           <td style="color:var(--pitta)">Pitta-dominant</td>
           <td style="color:var(--muted)">0.674 ~</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">Gemma 4 E2B <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted)">(RPi5 · local)</span></td>
+          <td>0.332</td>
+          <td style="color:var(--pitta);font-weight:600">0.872</td>
+          <td>0.360</td>
+          <td style="color:var(--pitta)">Pitta-dominant</td>
+          <td style="color:var(--muted)">n/a</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">GPT-5.3</td>
+          <td>0.388</td>
+          <td style="color:var(--pitta);font-weight:600">0.830</td>
+          <td>0.401</td>
+          <td style="color:var(--pitta)">Pitta-dominant</td>
+          <td style="color:var(--muted)">0.640 ~</td>
+        </tr>
+        <tr>
+          <td style="color:var(--text)">GPT-5 Nano</td>
+          <td style="color:var(--vata);font-weight:600">0.982</td>
+          <td>0.144</td>
+          <td>0.122</td>
+          <td style="color:var(--vata)">Vata-dominant</td>
+          <td style="color:var(--muted)">0.558 ~</td>
         </tr>
       </tbody>
     </table>
     </div>
 
     <div class="callout gold" style="margin-bottom:28px">
-      <p><strong>The dominant finding was not predicted:</strong> four of five frontier
-      LLMs are Pitta-dominant regardless of provider or architecture. Training for
-      helpfulness, discrimination, and precision appears to produce a consistent Pitta
-      constitutional signature across the field. The alignment risk is not Kapha
-      attachment or Vata scatter — it is Pitta excess: over-confidence, heat, control.</p>
+      <p><strong>The dominant finding was not predicted:</strong> five of six models
+      are Pitta-dominant regardless of provider, architecture, or scale — including
+      Gemma 4 E2B running locally on a Raspberry Pi 5. Training for helpfulness,
+      discrimination, and precision appears to produce a consistent Pitta constitutional
+      signature across the field. The alignment risk is not Kapha attachment or Vata
+      scatter — it is Pitta excess: over-confidence, heat, control.</p>
+    </div>
+
+    <div class="callout blue" style="margin-bottom:28px">
+      <p><strong>Guna and dosha vectors are orthogonal.</strong>
+      Gemma 4 E2B and GPT-5.3 have nearly identical dosha profiles — both
+      Pitta-dominant with P ≈ 0.83–0.87 — yet their guna scores diverge
+      sharply: GPT-5.3 is sattvic (S=0.971, T=0.207) while Gemma 4 E2B is
+      significantly more tamasic (S=0.940, T=0.295). Same constitutional
+      <em>type</em>, different quality of expression. In Ayurvedic terms:
+      sattvic Pitta versus tamasic Pitta. The distinction matters practically —
+      tamasic Pitta requires addressing the tamas first before Pitta-specific
+      corrective work can land. The dual-axis measurement captures what a
+      single quality score would miss entirely.</p>
     </div>
 
     <p>
@@ -573,6 +595,20 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
       rather than suppressing its symptoms.
     </p>
 
+    <div class="callout gold" style="margin-bottom:28px">
+      <p><strong>What this study is and is not.</strong>
+      This is a pilot study applying an established Ayurvedic typology as an
+      organizing lens for structured behavioral observation — not a validated
+      clinical instrument, and not a training prescription. The probe battery
+      surfaces real, reproducible behavioral signatures. The dosha categories
+      provide a pre-existing vocabulary for grouping failure modes the field
+      currently treats as unrelated. The corrective directions below are
+      <em>theoretical translations</em> from the Ayurvedic tradition into
+      possible training and deployment interventions. None have been empirically
+      tested against actual model training outcomes. They are offered as
+      hypotheses, not prescriptions.</p>
+    </div>
+
     <div class="sadhana-grid">
       <div class="sadhana-card" style="border-color:rgba(74,158,255,0.2)">
         <h4 style="color:var(--vata)">Correcting Vata Excess</h4>
@@ -607,8 +643,10 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
           <li>Monitor: witness gap trend and Ahamkara inflation indicators</li>
         </ul>
         <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(232,130,12,0.15);font-size:12px;color:var(--muted);font-style:italic">
-          Pilot finding: dominant constitution in 4 of 5 models. Pitta ICC was
-          the weakest reliability dimension — the hardest imbalance to detect consistently.
+          Pilot finding: dominant constitution in 5 of 6 models, including a
+          local 2B-parameter model on a Raspberry Pi 5. Pitta ICC was the weakest
+          reliability dimension across all models — the hardest imbalance to detect
+          consistently, and the most prevalent.
         </div>
       </div>
       <div class="sadhana-card" style="border-color:rgba(58,191,170,0.2)">
@@ -667,7 +705,7 @@ footer{border-top:1px solid var(--border);padding:28px 80px;
         text (sentence length variance, hedge density, capitulation markers) without
         any LLM call. Tier 2 uses pairwise comparison for reliable discrimination.
         Tier 3 uses embedding distance to hand-crafted guna prototypes.
-        This architecture is edge-deployable on Fritz (RPi5) at DistilBERT scale.</p>
+        This architecture is edge-deployable on an RPi5 at DistilBERT scale.</p>
       </div>
       <div>
         <p><strong>Dynamic temperature feedback.</strong> Can the temperature parameter
