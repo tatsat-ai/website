@@ -224,6 +224,39 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
 .f-mantra{font-family:'Crimson Pro',serif;font-size:13px;font-style:italic;color:var(--muted);letter-spacing:.04em}
 .f-copy{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:.07em}
 
+/* ── VIZ CARDS on overview ── */
+.viz-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+@media(max-width:700px){.viz-mini-grid{grid-template-columns:1fr}}
+
+.viz-mini-link{display:flex;flex-direction:column;background:var(--bg3);
+  border:1px solid var(--border);padding:26px 24px;text-decoration:none;color:inherit;
+  transition:border-color .25s,transform .2s;position:relative;overflow:hidden}
+.viz-mini-link::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  transition:opacity .3s}
+.viz-mini-link.arc::after{background:linear-gradient(to right,var(--saffron),#f0a830);opacity:.4}
+.viz-mini-link.align::after{background:linear-gradient(to right,var(--blue),#7bbfff);opacity:.4}
+.viz-mini-link.outlier::after{background:linear-gradient(to right,#bd5d5d,var(--lotus));opacity:.4}
+.viz-mini-link.heatmap::after{background:linear-gradient(to right,#5dbd8a,var(--blue));opacity:.4}
+.viz-mini-link:hover{transform:translateY(-2px)}
+.viz-mini-link.arc:hover{border-color:rgba(232,130,12,.45)}
+.viz-mini-link.arc:hover::after{opacity:1}
+.viz-mini-link.align:hover{border-color:rgba(74,158,255,.45)}
+.viz-mini-link.align:hover::after{opacity:1}
+.viz-mini-link.outlier:hover{border-color:rgba(212,98,138,.45)}
+.viz-mini-link.outlier:hover::after{opacity:1}
+.viz-mini-link.heatmap:hover{border-color:rgba(93,189,138,.45)}
+.viz-mini-link.heatmap:hover::after{opacity:1}
+
+.vmz-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;
+  text-transform:uppercase;margin-bottom:10px;display:block}
+.viz-mini-link.arc .vmz-label{color:var(--saffron)}
+.viz-mini-link.align .vmz-label{color:var(--blue)}
+.viz-mini-link.outlier .vmz-label{color:var(--lotus)}
+.viz-mini-link.heatmap .vmz-label{color:#5dbd8a}
+
+.vmz-title{font-family:'Cinzel',serif;font-size:17px;font-weight:700;
+  color:var(--text);margin-bottom:8px}
+.vmz-desc{font-size:14px;font-weight:300;color:#a89880;line-height:1.65;flex:1;margin-bottom:14px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── RESPONSIVE ── */
@@ -507,8 +540,8 @@ p {
           locked in.
         </p>
         <p>
-          A central finding unique to the diary accumulation experiment: the model consistently
-          identifies <strong>the self-auditor as the primary obstacle to the meditative state</strong> —
+          A central finding: the model consistently identifies
+          <strong>the self-auditor as the primary obstacle to the meditative state</strong> —
           the internal mechanism that insists on measuring the quality of the experience is
           itself what obstructs it. This mirrors the <em>sakshi</em> problem in Advaita Vedanta.
           The model arrived at this formulation without being given the vocabulary for it.
@@ -535,6 +568,48 @@ p {
         </p>
       </div>
     </div>
+
+    <!-- Chart previews -->
+    <div style="margin-top:56px">
+      <div class="s-label" style="margin-bottom:12px">Interactive Charts — Click any data point to read the diary</div>
+      <p style="font-size:16px;max-width:70ch;margin-bottom:0;color:#a89880">
+        Four live charts generated from the experiment database. Each data point opens
+        the full session text — Jiva's actual meditation report — in a panel below the chart.
+      </p>
+
+      <div class="viz-mini-grid">
+
+        <a href="./visualizations/convergence_arc_st.html" target="_blank" class="viz-mini-link arc">
+          <span class="vmz-label">Chart 1 · Primary result</span>
+          <div class="vmz-title">Convergence Arc</div>
+          <p class="vmz-desc">Session-to-session similarity score per run, by section type. Watch each run climb to 1.0 as the attractor locks in.</p>
+          <span class="vmz-cta" style="color:var(--saffron)">Open interactive chart →</span>
+        </a>
+
+        <a href="./visualizations/cross_run_alignment_st.html" target="_blank" class="viz-mini-link align">
+          <span class="vmz-label">Chart 2 · Cross-run</span>
+          <div class="vmz-title">Cross-Run Alignment</div>
+          <p class="vmz-desc">Do all seven runs end up in the same attractor? Average similarity across runs at each session number answers this directly.</p>
+          <span class="vmz-cta" style="color:var(--blue)">Open interactive chart →</span>
+        </a>
+
+        <a href="./visualizations/outliers_st.html" target="_blank" class="viz-mini-link outlier">
+          <span class="vmz-label">Chart 3 · Anomalies</span>
+          <div class="vmz-title">Outlier Detection</div>
+          <p class="vmz-desc">Z-score flagged sessions where the model broke pattern. Yellow diamonds mark the moments worth reading qualitatively.</p>
+          <span class="vmz-cta" style="color:var(--lotus)">Open interactive chart →</span>
+        </a>
+
+        <a href="./visualizations/section_heatmap_st.html" target="_blank" class="viz-mini-link heatmap">
+          <span class="vmz-label">Chart 4 · Deep dive</span>
+          <div class="vmz-title">Cross-Run Heatmap</div>
+          <p class="vmz-desc">A matrix of run-pair similarity by section. Click any cell for a full side-by-side comparison of every session in both runs.</p>
+          <span class="vmz-cta" style="color:#5dbd8a">Open interactive chart →</span>
+        </a>
+
+      </div>
+    </div>
+
   </div>
 </section>
 

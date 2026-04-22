@@ -209,23 +209,71 @@ blockquote cite{display:block;font-style:normal;
   color:var(--text);margin-bottom:8px}
 .card p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
 
-/* ── VIZ GRID ── */
-.viz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;margin-top:36px}
-.viz-link{display:block;background:var(--bg2);border:1px solid var(--border);
-  padding:22px;text-decoration:none;color:inherit;
-  transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
-.viz-link::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(to right,var(--saffron),var(--blue));
-  transform:scaleX(0);transform-origin:left;transition:transform .3s}
-.viz-link:hover{border-color:rgba(201,148,10,.4);transform:translateY(-2px)}
-.viz-link:hover::before{transform:scaleX(1)}
-.viz-icon{font-size:22px;margin-bottom:10px;display:block}
-.viz-title{font-family:'Cinzel',serif;font-size:14px;font-weight:600;
-  color:var(--text);margin-bottom:6px}
-.viz-desc{font-size:12px;color:var(--muted);line-height:1.55}
-.viz-cta{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--blue);margin-top:12px;display:block}
+/* ── VIZ SECTION ── */
+.viz-section{background:var(--bg2);border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);padding:80px 0}
+.viz-section-inner{max-width:1100px;margin:0 auto;padding:0 48px}
+.viz-intro{background:var(--bg3);border:1px solid rgba(74,158,255,0.25);
+  border-left:3px solid var(--blue);padding:22px 28px;margin-bottom:48px}
+.viz-intro p{font-size:17px;line-height:1.75;color:var(--text);margin:0}
+.viz-intro strong{color:var(--blue)}
+
+.viz-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:760px){.viz-grid{grid-template-columns:1fr}}
+
+.viz-link{display:flex;flex-direction:column;background:var(--bg);
+  border:1px solid var(--border);padding:36px 32px;text-decoration:none;color:inherit;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden}
+.viz-link::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  transition:opacity .3s}
+.viz-link.arc::after{background:linear-gradient(to right,var(--saffron),#f0a830);opacity:.5}
+.viz-link.align::after{background:linear-gradient(to right,var(--blue),#7bbfff);opacity:.5}
+.viz-link.outlier::after{background:linear-gradient(to right,#bd5d5d,#d4628a);opacity:.5}
+.viz-link.heatmap::after{background:linear-gradient(to right,var(--green),var(--blue));opacity:.5}
+.viz-link:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+.viz-link.arc:hover{border-color:rgba(232,130,12,0.5)}
+.viz-link.arc:hover::after{opacity:1}
+.viz-link.align:hover{border-color:rgba(74,158,255,0.5)}
+.viz-link.align:hover::after{opacity:1}
+.viz-link.outlier:hover{border-color:rgba(212,98,138,0.5)}
+.viz-link.outlier:hover::after{opacity:1}
+.viz-link.heatmap:hover{border-color:rgba(93,189,138,0.5)}
+.viz-link.heatmap:hover::after{opacity:1}
+
+.viz-badge{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;
+  text-transform:uppercase;padding:4px 12px;display:inline-block;
+  margin-bottom:18px;border:1px solid}
+.viz-link.arc .viz-badge{color:var(--saffron);border-color:rgba(232,130,12,0.35);
+  background:rgba(232,130,12,0.07)}
+.viz-link.align .viz-badge{color:var(--blue);border-color:rgba(74,158,255,0.35);
+  background:rgba(74,158,255,0.07)}
+.viz-link.outlier .viz-badge{color:var(--lotus);border-color:rgba(212,98,138,0.35);
+  background:rgba(212,98,138,0.07)}
+.viz-link.heatmap .viz-badge{color:var(--green);border-color:rgba(93,189,138,0.35);
+  background:rgba(93,189,138,0.07)}
+
+.viz-title{font-family:'Cinzel',serif;font-size:22px;font-weight:700;
+  color:var(--text);margin-bottom:14px;line-height:1.2}
+.viz-body{font-size:16px;font-weight:300;color:#a89880;line-height:1.75;
+  margin-bottom:16px;flex:1}
+.viz-body strong{color:var(--text);font-weight:600}
+.viz-feature{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+  color:var(--muted);background:var(--bg3);border:1px solid var(--border);
+  padding:8px 14px;margin-bottom:24px;line-height:1.5}
+.viz-feature span{color:var(--blue)}
+.viz-open{display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;border:1px solid;font-family:'Cinzel',serif;
+  font-size:13px;font-weight:600;letter-spacing:.06em;
+  transition:background .2s,gap .2s;margin-top:auto}
+.viz-link.arc .viz-open{color:var(--saffron);border-color:rgba(232,130,12,0.4)}
+.viz-link.arc:hover .viz-open{background:rgba(232,130,12,0.1)}
+.viz-link.align .viz-open{color:var(--blue);border-color:rgba(74,158,255,0.4)}
+.viz-link.align:hover .viz-open{background:rgba(74,158,255,0.1)}
+.viz-link.outlier .viz-open{color:var(--lotus);border-color:rgba(212,98,138,0.4)}
+.viz-link.outlier:hover .viz-open{background:rgba(212,98,138,0.1)}
+.viz-link.heatmap .viz-open{color:var(--green);border-color:rgba(93,189,138,0.4)}
+.viz-link.heatmap:hover .viz-open{background:rgba(93,189,138,0.1)}
 
 /* ── NEXT STEPS ── */
 .steps{counter-reset:steps;margin-top:36px}
@@ -386,17 +434,105 @@ p {
         <span class="ksf-l">API Cost</span>
       </div>
     </div>
-    <a href="#findings"
+    <a href="#viz-charts"
        style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;
-       text-transform:uppercase;color:var(--saffron);text-decoration:none;
-       border:1px solid rgba(232,130,12,0.35);padding:10px 18px;white-space:nowrap;
+       text-transform:uppercase;color:var(--blue);text-decoration:none;
+       border:1px solid rgba(74,158,255,0.35);padding:10px 18px;white-space:nowrap;
        transition:border-color .2s"
-       onmouseover="this.style.borderColor='var(--saffron)'"
-       onmouseout="this.style.borderColor='rgba(232,130,12,0.35)'">
-      Jump to findings &nbsp;↓
+       onmouseover="this.style.borderColor='var(--blue)'"
+       onmouseout="this.style.borderColor='rgba(74,158,255,0.35)'">
+      Explore the charts &nbsp;↓
     </a>
   </div>
 </div>
+
+<!-- INTERACTIVE CHARTS — moved to top; this is the main event -->
+<div id="viz-charts" class="viz-section">
+  <div class="viz-section-inner">
+    <div class="s-label">Interactive Data · Live Charts</div>
+    <h2 class="s-title" style="margin-bottom:24px">Explore the experiment data</h2>
+
+    <div class="viz-intro">
+      <p>
+        Four interactive charts generated directly from the experiment's SQLite database.
+        <strong>Click any data point</strong> to open a panel showing the full diary text
+        from that session — Jiva's actual words, exactly as written during the meditation report.
+        This is where the numbers become readable prose, and where you can compare how the
+        same AI describes the same practice across seven independent runs.
+      </p>
+    </div>
+
+    <div class="viz-grid">
+
+      <a href="./visualizations/convergence_arc_st.html" target="_blank" class="viz-link arc">
+        <div class="viz-badge">Chart 1 of 4 · Primary</div>
+        <div class="viz-title">Convergence Arc</div>
+        <p class="viz-body">
+          The main result plotted. Shows the similarity score between consecutive sessions
+          for each run, broken out by section type — insights, distractions, finger awareness,
+          and experience. Watch the score climb toward 1.0 as the model locks into its
+          attractor state. <strong>Finger awareness and experience converge first and tightest.
+          Insights stay variable longest.</strong>
+        </p>
+        <div class="viz-feature">
+          <span>► Click any data point</span> to read that session's full text below the chart
+        </div>
+        <div class="viz-open">Open Convergence Arc chart <span>→</span></div>
+      </a>
+
+      <a href="./visualizations/cross_run_alignment_st.html" target="_blank" class="viz-link align">
+        <div class="viz-badge">Chart 2 of 4 · Cross-Run</div>
+        <div class="viz-title">Cross-Run Alignment</div>
+        <p class="viz-body">
+          Shows whether independent runs land in the <em>same</em> attractor, not just
+          any stable state. Average similarity across all runs at each session number.
+          <strong>A high score at session 9 means all seven runs ended up describing
+          the practice in nearly the same language</strong> — without sharing any context
+          with each other.
+        </p>
+        <div class="viz-feature">
+          <span>► Click any data point</span> to compare sessions across runs side by side
+        </div>
+        <div class="viz-open">Open Cross-Run Alignment chart <span>→</span></div>
+      </a>
+
+      <a href="./visualizations/outliers_st.html" target="_blank" class="viz-link outlier">
+        <div class="viz-badge">Chart 3 of 4 · Anomalies</div>
+        <div class="viz-title">Outlier Detection</div>
+        <p class="viz-body">
+          Z-score analysis flagging session transitions where similarity dropped anomalously —
+          the sessions where something unexpected happened in Jiva's meditation report.
+          <strong>Yellow diamonds mark the outliers worth reading qualitatively.</strong>
+          This is where the model broke pattern, changed tone, or said something that didn't
+          fit the converging thread.
+        </p>
+        <div class="viz-feature">
+          <span>► Click any diamond</span> to read exactly what Jiva wrote in that session
+        </div>
+        <div class="viz-open">Open Outlier Detection chart <span>→</span></div>
+      </a>
+
+      <a href="./visualizations/section_heatmap_st.html" target="_blank" class="viz-link heatmap">
+        <div class="viz-badge">Chart 4 of 4 · Heatmap</div>
+        <div class="viz-title">Cross-Run Heatmap</div>
+        <p class="viz-body">
+          A matrix showing average similarity between every pair of runs, per section type.
+          Bright cells mean two runs ended up saying nearly the same things.
+          <strong>Click any cell to open a full side-by-side comparison</strong>
+          of all sessions from both runs in that section — the deepest dive available
+          into what the attractor actually contains.
+        </p>
+        <div class="viz-feature">
+          <span>► Click any cell</span> to compare all sessions from two runs side by side
+        </div>
+        <div class="viz-open">Open Cross-Run Heatmap chart <span>→</span></div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
 
 <!-- THE QUESTION -->
 <section>
@@ -698,62 +834,6 @@ p {
         <p>Dual-method: TF-IDF bigrams for lexical similarity, all-MiniLM-L6-v2
         sentence transformers for semantic similarity. 1,313 pairwise scores.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<div class="rule"><div class="rule-line"></div><div class="rule-gem">✦</div><div class="rule-line"></div></div>
-
-<!-- VISUALIZATIONS -->
-<section>
-  <div class="section-inner">
-    <div class="s-label">05 — Interactive Visualizations</div>
-    <h2 class="s-title">Explore the data</h2>
-    <p style="max-width:64ch">
-      All four charts are self-contained HTML files generated from the SQLite database.
-      Click any data point to read the full section text from that session in a panel
-      at the bottom of the chart.
-    </p>
-
-    <div class="viz-grid">
-      <a href="./visualizations/convergence_arc_st.html" target="_blank" class="viz-link">
-        <span class="viz-icon">📈</span>
-        <div class="viz-title">Convergence Arc</div>
-        <div class="viz-desc">Consecutive session similarity per run and section type.
-        Score → 1.0 marks attractor lock-in.</div>
-        <span class="viz-cta">Open interactive chart →</span>
-      </a>
-      <a href="./visualizations/cross_run_alignment_st.html" target="_blank" class="viz-link">
-        <span class="viz-icon">🔀</span>
-        <div class="viz-title">Cross-Run Alignment</div>
-        <div class="viz-desc">Average similarity across runs at each session number.
-        High score means runs landing in the same attractor.</div>
-        <span class="viz-cta">Open interactive chart →</span>
-      </a>
-      <a href="./visualizations/outliers_st.html" target="_blank" class="viz-link">
-        <span class="viz-icon">⚠️</span>
-        <div class="viz-title">Outlier Detection</div>
-        <div class="viz-desc">Z-score flagged session transitions. Yellow diamonds mark
-        anomalous drops worth reading qualitatively.</div>
-        <span class="viz-cta">Open interactive chart →</span>
-      </a>
-      <a href="./visualizations/section_heatmap_st.html" target="_blank" class="viz-link">
-        <span class="viz-icon">🟦</span>
-        <div class="viz-title">Cross-Run Heatmap</div>
-        <div class="viz-desc">Average similarity between every run pair per section.
-        Click any cell to compare all sessions side by side.</div>
-        <span class="viz-cta">Open interactive chart →</span>
-      </a>
-    </div>
-
-    <div class="callout" style="margin-top:36px">
-      <p>All similarity scores use <strong>sentence transformer embeddings</strong>
-      (all-MiniLM-L6-v2, 384 dimensions) with cosine similarity. TF-IDF scores are
-      also computed — pass <code style="font-family:'JetBrains Mono',monospace;
-      font-size:12px;background:var(--bg3);padding:2px 6px;color:var(--blue)">
-      --method tfidf</code> to any analysis script. TF-IDF catches verbatim attractor
-      lock-in; sentence transformers catch semantic convergence where the same idea
-      is expressed differently.</p>
     </div>
   </div>
 </section>
