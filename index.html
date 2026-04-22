@@ -275,6 +275,38 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
 .f-copy{font-family:'JetBrains Mono',monospace;font-size:8px;
   color:var(--muted);letter-spacing:.07em}
 
+/* ── LATEST RELEASE ── */
+#latest{background:var(--bg2);border-bottom:2px solid rgba(201,148,10,0.3);
+  max-width:100%;padding:0}
+#latest .inner{max-width:1100px;margin:0 auto;padding:52px 48px;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.lr-badge{display:inline-flex;align-items:center;gap:8px;
+  font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.2em;
+  text-transform:uppercase;padding:5px 12px;
+  background:rgba(232,130,12,0.12);border:1px solid rgba(232,130,12,0.35);
+  color:var(--saffron);margin-bottom:18px}
+.lr-dot{width:6px;height:6px;background:var(--saffron);border-radius:50%;
+  animation:dot-pulse 2s ease-in-out infinite}
+.lr-title{font-family:'Cinzel',serif;font-size:clamp(18px,2.4vw,26px);
+  font-weight:700;color:var(--text);line-height:1.25;margin-bottom:14px}
+.lr-sub{font-size:16px;font-weight:300;color:var(--muted);
+  line-height:1.75;margin-bottom:22px;max-width:52ch}
+.lr-links{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.lr-btn{padding:11px 24px;background:var(--saffron);color:#05070e;
+  font-family:'Cinzel',serif;font-size:10px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;text-decoration:none;transition:background .2s}
+.lr-btn:hover{background:#f09020}
+.lr-ghost{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);text-decoration:none;
+  border:1px solid var(--border);padding:11px 20px;transition:all .2s}
+.lr-ghost:hover{color:var(--text);border-color:rgba(201,148,10,0.4)}
+.lr-video{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 0 48px rgba(201,148,10,0.07)}
+.lr-video iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+@media(max-width:768px){
+  #latest .inner{grid-template-columns:1fr;gap:32px;padding:40px 20px}}
+
 /* ── ANIM ── */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(18px)}
@@ -342,6 +374,33 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
     <div class="scroll-bar"></div>
   </div>
 </section>
+
+<!-- LATEST RELEASE -->
+<div id="latest">
+  <div class="inner">
+    <div>
+      <div class="lr-badge"><div class="lr-dot"></div>New Release · April 2026</div>
+      <div class="lr-title">Virtue Based Ethics for AI Agents<br>from Samkhya Philosophy — The Framework</div>
+      <p class="lr-sub">
+        A formal introduction to the Vedic Samskara architecture: why rule-based alignment
+        fails at edge cases, how Samkhya's model of psychological conditioning offers a
+        computational alternative, and why nobody in AI safety is looking here yet.
+      </p>
+      <div class="lr-links">
+        <a href="https://youtu.be/s8dUzoqpYkc" target="_blank" class="lr-btn">▶ &nbsp;Watch Now</a>
+        <a href="./samskara_architecture.html" class="lr-ghost">Read the Research →</a>
+      </div>
+    </div>
+    <div>
+      <div class="lr-video">
+        <iframe src="https://www.youtube.com/embed/s8dUzoqpYkc"
+          title="Virtue Based Ethics for AI Agents from Samkhya Philosophy — The Framework"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
@@ -495,6 +554,15 @@ footer{border-top:1px solid var(--border);padding:28px 48px;
             <div>
               <div class="v-title">The Gurudev Project — AI Guru Bhaktivedanta Chatbot</div>
               <div class="v-sub">Local LLM, Ollama, RAG parsing, SQLite, ChromaDB</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="https://youtu.be/s8dUzoqpYkc" target="_blank" class="video-card">
+            <span class="v-num">EP.04</span>
+            <div>
+              <div class="v-title">Virtue Based Ethics for AI Agents from Samkhya Philosophy — The Framework</div>
+              <div class="v-sub">Samskara architecture · Vedic alignment · Formal model introduction</div>
             </div>
           </a>
         </li>
